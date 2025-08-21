@@ -1,5 +1,5 @@
-import Image from "next/image";
 
-export default function section2() {
-  return (<div>section2</div>);
+
+export default function Section2() {
+  return (<div className="bg-blue-200 p-5 text-center h-full flex items-center justify-center">Section2</div>);
 }
