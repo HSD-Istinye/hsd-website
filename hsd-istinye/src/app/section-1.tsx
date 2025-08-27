@@ -40,22 +40,21 @@ const HuaweiStudentDevelopers = () => {
         {/* Hero (VIDEO BACKGROUND) */}
         <section className="relative overflow-hidden">
           {/* Video layer */}
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            controls={false}
-            disablePictureInPicture
-            aria-hidden="true"
-            poster="/videos/hero-poster.jpg"  // opsiyonel poster
-          >
-            <source src="/videos/hero.webm" type="video/webm" />
-            <source src="/videos/hero.mp4" type="video/mp4" />
-            {/* Tarayıcı video desteklemezse mor arkaplan fallback */}
-          </video>
+          {/* Video layer */}
+        <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        controls={false}
+        disablePictureInPicture
+        aria-hidden="true"
+     >
+      <source src="/videos/hero.mp4" type="video/mp4" />
+      {/* Tarayıcı video desteklemezse mor arkaplan fallback */}
+    </video>
 
           {/* Mor overlay (okunabilirlik için) */}
           <div className="absolute inset-0 bg-gradient-to-b from-purple-700/40 to-purple-700/10" />
