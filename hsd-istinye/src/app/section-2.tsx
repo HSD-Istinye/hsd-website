@@ -2,47 +2,50 @@
 import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const members = [ 
+const members = [
     {
-    name: "Muhammed Said Tosun",
-    role: "Events team leader",
-    study: "Computer Engineering Student",
-    initial: "M",
-    gradient: "from-orange-500 to-red-500",
-    color: "text-orange-600",
-    linkedin: "https://www.linkedin.com/in/muhammed-said-tosun/",
-  },
-  {
-    name: "Mehmet Doruk Artan",
-    role: "Project team leader",
-    study: "Computer Engineering Student",
-    initial: "M",
-    gradient: "from-blue-500 to-purple-500",
-    color: "text-purple-600",
-    linkedin:
-      "https://www.linkedin.com/in/doruk-artan/?lipi=urn%3Ali%3Apage%3Ap_mwlite_my_network%3Bk3V3jLOyQNq9omp0ZxsjwQ%3D%3D",
-  },
-  {
-    name: "Ata Sesli",
-    role: "Ambassador",
-    study: "Computer Engineering Student",
-    initial: "A",
-    gradient: "from-green-500 to-teal-500",
-    color: "text-green-600",
-    linkedin: "https://www.linkedin.com/in/ata-sesli?trk=blended-typeahead",
-  },
-  {
+      name: "Ata Sesli",
+      role: "Ambassador",
+      study: "Computer Engineering Student",
+      initial: "A",
+      gradient: "from-green-500 to-teal-500",
+      color: "text-green-600",
+      github: "https://github.com/ata-sesli",
+      linkedin: "https://www.linkedin.com/in/ata-sesli?trk=blended-typeahead",
+    },
+    {
     name: "Ebrar Kama",
-    role: "Vice ambassador and social media team leader",
+    role: "Vice Ambassador & Social Media Team Leader",
     study: "Molecular Biology and Genetic Student",
     initial: "Z",
     gradient: "from-pink-500 to-purple-500",
     color: "text-green-600",
     linkedin: "https://www.linkedin.com/in/ebrar-kama-3b8226348/?lipi=urn%3Ali%3Apage%3Ap_mwlite_people_connections%3BX%2BWTbxpZQ%2FSFN1X7T5ps%2FQ%3D%3D",
+    }, 
+    {
+    name: "Muhammed Said Tosun",
+    role: "Event Team Leader",
+    study: "Computer Engineering Student",
+    initial: "M",
+    gradient: "from-orange-500 to-red-500",
+    color: "text-orange-600",
+    github: "https://github.com/MuhammedSaidTosun",
+    linkedin: "https://www.linkedin.com/in/muhammed-said-tosun/",
+  },
+  {
+    name: "Mehmet Doruk Artan",
+    role: "Project Team Leader",
+    study: "Computer Engineering Student",
+    initial: "M",
+    gradient: "from-blue-500 to-purple-500",
+    color: "text-purple-600",
+    github: "https://github.com/DorukArtan",
+    linkedin:
+      "https://www.linkedin.com/in/doruk-artan/?lipi=urn%3Ali%3Apage%3Ap_mwlite_my_network%3Bk3V3jLOyQNq9omp0ZxsjwQ%3D%3D",
   },
   {
     name: "Tuana Kabakçı",
-    role: "Events team member",
+    role: "Event Team member",
     study: "Psychology Student",
     initial: "T",
     gradient: "from-orange-500 to-red-500",
@@ -51,7 +54,7 @@ const members = [
   },
   {
     name: "Sena Zeytin",
-    role: "Events team member",
+    role: "Event Team member",
     study: "International Relations Student",
     initial: "S",
     gradient: "from-orange-500 to-red-500",
@@ -60,7 +63,7 @@ const members = [
   },
   {
     name: "Berivan Ertuğrul",
-    role: "Events team member",
+    role: "Event Team member",
     study: "Software Engineering Student",
     initial: "B",
     gradient: "from-orange-500 to-red-500",
@@ -69,7 +72,7 @@ const members = [
   },
   {
     name: "Büşra Ceylan",
-    role: "Events team member",
+    role: "Event Team Member",
     study: "Software Engineering Student",
     initial: "B",
     gradient: "from-orange-500 to-red-500",
@@ -79,17 +82,17 @@ const members = [
   },
   {
     name: "Musab Ahmed Khan Umair",
-    role: "Project team member",
+    role: "Project Team Member",
     study: "AI Engineering Student",
     initial: "M",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
-    linkedin:
-      "https://www.linkedin.com/in/musab-ahmed-khan-umair-77abb5132?trk=blended-typeahead",
+    github: "musabaku",
+    linkedin: "https://www.linkedin.com/in/musab-ahmed-khan-umair-77abb5132?trk=blended-typeahead",
   },
   {
     name: "Fatemeh Nasirian",
-    role: "Project team member",
+    role: "Project Team Member",
     study: "Software Engineering Student",
     initial: "F",
     gradient: "from-blue-500 to-purple-500",
@@ -99,26 +102,28 @@ const members = [
   },
   {
     name: "Berke Durdu",
-    role: "Project team member",
+    role: "Project Team Member",
     study: "Software Engineering Student",
     initial: "B",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
+    github: "https://github.com/Berke111",
     linkedin:
       "https://www.linkedin.com/in/berke-durdu/?lipi=urn%3Ali%3Apage%3Ap_mwlite_my_network%3BXfBAfcidTFy0mEse8fKVaA%3D%3D",
   },
   {
     name: "Esra Bingol",
-    role: "Project team member",
+    role: "Project Team Member",
     study: "Software Engineering Student",
     initial: "Z",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
-    linkedin: "https://www.linkedin.com/in/esra-bingol?trk=blended-typeahead",
+    github: "https://github.com/esra-bingol",
+    linkedin: "https://www.linkedin.com/in/esra-bingol?trk=blended-typeahead"
   },
   {
     name: "Aylin Ataç",
-    role: "Social media team member",
+    role: "Social Media Team Member",
     study: "Radio and Television Student",
     initial: "A",
     gradient: "from-pink-500 to-purple-500",
@@ -128,7 +133,7 @@ const members = [
   },
   {
     name: "Ece Ayhan",
-    role: "Social media team member",
+    role: "Social Media Team Member",
     study: "Psychology Student",
     initial: "E",
     gradient: "from-pink-500 to-purple-500",
@@ -138,7 +143,7 @@ const members = [
   },
   {
     name: "Beyza Coşkun",
-    role: "Social media team member",
+    role: "Social Media Team Member",
     study: "Psychology Student",
     initial: "B",
     gradient: "from-pink-500 to-purple-500",
@@ -148,12 +153,12 @@ const members = [
   },
   {
     name: "Sudenaz Orduluoğlu",
-    role: "Social media team member",
+    role: "Social Media Team Member",
     study: "Psychology Student",
     initial: "S",
     gradient: "from-pink-500 to-purple-500",
     color: "text-pink-600",
-    linkedin: "https://linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/sudenaz-orduluo%C4%9Flu-95919b31a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   
 ];
