@@ -14,12 +14,14 @@ const SponsorLogo: React.FC<SponsorLogoProps> = ({ name }) => (
 const Section3: React.FC = () => {
   const sponsors: string[] = ["Meta", "Apple", "Huawei", "Microsoft", "Google", "Amazon", "Netflix"];
 
+  const scrollWidth = `calc(-${sponsors.length * 10}rem)`;
+
   return (
     <>
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-100% - 1rem * ${sponsors.length})); }
+          100% { transform: translateX(${scrollWidth}); }
         }
         .animate-scroll {
           animation: scroll 30s linear infinite;
