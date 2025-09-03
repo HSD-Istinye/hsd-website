@@ -1,5 +1,6 @@
 import React from 'react';
-import { Code, Zap, Mic, Users, Eye, Handshake, ArrowRight } from 'lucide-react';
+import Link from "next/link";
+import { Code, Zap, Trophy, Laptop, Mic, Users, Eye, Handshake, ArrowRight } from 'lucide-react';
 
 interface SponsorLogoProps {
   name: string;
@@ -40,45 +41,84 @@ const Section3: React.FC = () => {
             </p>
 
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {/* Card 1: Coding Workshops */}
-              <div className="bg-white rounded-xl shadow-lg p-8 text-left transform hover:-translate-y-2 transition-transform duration-300">
-                <div className="p-4 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 inline-block mb-6">
-                  <Code className="text-white" size={28} />
+              {/* Card 1: Coding Workshops (reworked layout) */}
+              <div className="rounded-xl shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-br from-blue-400 to-indigo-600 p-8 text-white flex flex-col items-center gap-4">
+                  <div className="p-3 rounded-lg bg-white/10">
+                    <Laptop size={36} />
+                  </div>
+                  <h3 className="text-xl font-bold">Coding Workshops</h3>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Coding Workshops</h3>
-                <p className="text-gray-600 mb-6">
-                  Hands-on workshops covering the latest technologies, frameworks, and development practices.
-                </p>
-                <div className="text-sm">
-                  <span className="text-purple-600 font-semibold">Weekly • Saturdays</span>
+
+                <div className="bg-white p-6">
+                  <p className="text-gray-600 mb-6">
+                    Hands-on workshops covering the latest technologies, frameworks, and development practices.
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-left">
+                      <div className="font-semibold text-gray-800">250+ Participants</div>
+                      <div className="text-xs text-gray-500 mt-1">Weekly • Saturdays • 8 Workshops Held</div>
+                    </div>
+
+                    <Link href="/events/workshops" className="text-sm bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-full">
+                      View Details →
+                    </Link>
+                  </div>
                 </div>
               </div>
 
-              {/* Card 2: Hackathons */}
-              <div className="bg-white rounded-xl shadow-lg p-8 text-left transform hover:-translate-y-2 transition-transform duration-300">
-                <div className="p-4 rounded-lg bg-gradient-to-br from-green-400 to-teal-500 inline-block mb-6">
-                  <Zap className="text-white" size={28} />
+              {/* Card 2: Hackathons (reworked layout) */}
+              <div className="rounded-xl shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-br from-pink-500 to-purple-500 p-8 text-white flex flex-col items-center gap-4">
+                  <div className="p-3 rounded-lg bg-white/10">
+                    <Trophy size={36} />
+                  </div>
+                  <h3 className="text-xl font-bold">Hackathons</h3>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Hackathons</h3>
-                <p className="text-gray-600 mb-6">
-                  24-hour coding competitions where teams build innovative solutions to real-world problems.
-                </p>
-                <div className="text-sm">
-                  <span className="text-green-600 font-semibold">Monthly • Weekends</span>
+
+                <div className="bg-white p-6">
+                  <p className="text-gray-600 mb-6">
+                    24-hour coding competitions where teams build innovative solutions to real-world problems.
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-left">
+                      <div className="font-semibold text-gray-800">250+ Participants</div>
+                      <div className="text-xs text-gray-500 mt-1">Monthly • Weekends • 5 Events Completed</div>
+                    </div>
+
+                    <Link href="/events/hackathons" className="text-sm bg-pink-600 hover:bg-pink-700 text-white px-3 py-2 rounded-full">
+                      View Details →
+                    </Link>
+                  </div>
                 </div>
               </div>
 
-              {/* Card 3: Tech Talks */}
-              <div className="bg-white rounded-xl shadow-lg p-8 text-left transform hover:-translate-y-2 transition-transform duration-300">
-                <div className="p-4 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 inline-block mb-6">
-                  <Mic className="text-white" size={28} />
+              {/* Card 3: Tech Talks (reworked layout) */}
+              <div className="rounded-xl shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-br from-green-400 to-teal-400 p-8 text-white flex flex-col items-center gap-4">
+                  <div className="p-3 rounded-lg bg-white/10">
+                    <Mic size={36} />
+                  </div>
+                  <h3 className="text-xl font-bold">Tech Talks</h3>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Tech Talks</h3>
-                <p className="text-gray-600 mb-6">
-                  Industry experts share insights on emerging technologies and career development.
-                </p>
-                <div className="text-sm">
-                  <span className="text-orange-600 font-semibold">Bi-weekly • Thursdays</span>
+
+                <div className="bg-white p-6">
+                  <p className="text-gray-600 mb-6">
+                    Industry experts share insights on emerging technologies and career development.
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-left">
+                      <div className="font-semibold text-gray-800">250+ Participants</div>
+                      <div className="text-xs text-gray-500 mt-1">Bi-weekly • Thursdays • 12 Talks Given</div>
+                    </div>
+
+                    <Link href="/events/tech-talks" className="text-sm bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-full">
+                      View Details →
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -150,3 +190,5 @@ const Section3: React.FC = () => {
 };
 
 export default Section3;
+
+

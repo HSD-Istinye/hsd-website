@@ -183,7 +183,7 @@ export default function Section4() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="font-semibold text-lg md:text-xl">Huawei Student Developers - Istinye University</div>
           <div className="text-sm md:text-base text-gray-300 mt-2">
-            © 2024 HSD Istinye. Empowering the next generation of developers.
+            © 2025 HSD Istinye. Empowering the next generation of developers.
           </div>
         </div>
       </footer>
