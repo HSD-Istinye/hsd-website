@@ -274,48 +274,50 @@ const App = () => {
             </p>
 
             {/* --- Interactive Calendar Start --- */}
-            <div className="mt-12 bg-white rounded-xl shadow-lg p-4 md:p-6 text-left">
-              <div className="flex justify-between items-center mb-4">
-                <button onClick={handlePrevMonth} className="p-2 rounded-full hover:bg-gray-100">
-                  <ChevronLeft size={24} className="text-gray-600" />
-                </button>
-                <h3 className="text-xl font-bold text-gray-700">{monthName} {year}</h3>
-                <button onClick={handleNextMonth} className="p-2 rounded-full hover:bg-gray-100">
-                  <ChevronRight size={24} className="text-gray-600" />
-                </button>
-              </div>
+            <div className="max-w-5xl mx-auto">
+              <div className="mt-12 bg-white rounded-xl shadow-lg p-4 md:p-6 text-left">
+                <div className="flex justify-between items-center mb-4">
+                  <button onClick={handlePrevMonth} className="p-2 rounded-full hover:bg-gray-100">
+                    <ChevronLeft size={24} className="text-gray-600" />
+                  </button>
+                  <h3 className="text-xl font-bold text-gray-700">{monthName} {year}</h3>
+                  <button onClick={handleNextMonth} className="p-2 rounded-full hover:bg-gray-100">
+                    <ChevronRight size={24} className="text-gray-600" />
+                  </button>
+                </div>
 
-              <div className="grid calendar-grid gap-1">
-                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                  <div key={day} className="text-center font-semibold text-gray-500 text-sm py-2">{day}</div>
-                ))}
+                <div className="grid calendar-grid gap-1">
+                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                    <div key={day} className="text-center font-semibold text-gray-500 text-sm py-2">{day}</div>
+                  ))}
 
-                {calendarDays.map(dayInfo => {
-                  if (dayInfo.type === 'empty') {
-                    return <div key={dayInfo.key} className="border rounded-md border-transparent"></div>;
-                  }
-                  
-                  const { key, day, date, events } = dayInfo;
-                  const isToday = formatDate(new Date()) === formatDate(date);
+                  {calendarDays.map(dayInfo => {
+                    if (dayInfo.type === 'empty') {
+                      return <div key={dayInfo.key} className="border rounded-md border-transparent"></div>;
+                    }
+                    
+                    const { key, day, date, events } = dayInfo;
+                    const isToday = formatDate(new Date()) === formatDate(date);
 
-                  return (
-                    <div key={key} className="relative border border-gray-200 rounded-md p-2 h-36 flex flex-col group bg-gray-50 hover:bg-white transition-colors duration-200">
-                      <div className={`font-semibold ${isToday ? 'bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center' : 'text-gray-700'}`}>
-                        {day}
+                    return (
+                      <div key={key} className="relative border border-gray-200 rounded-md p-2 h-28 flex flex-col group bg-gray-50 hover:bg-white transition-colors duration-200">
+                        <div className={`font-semibold ${isToday ? 'bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center' : 'text-gray-700'}`}>
+                          {day}
+                        </div>
+                        <div className="flex-grow overflow-y-auto mt-1 space-y-1 text-xs">
+                           {events.map(event => (
+                             <div key={event.id} onClick={() => openEditModal(event)} className={`p-1 rounded cursor-pointer ${colorClasses[event.color] || colorClasses.blue}`}>
+                               <p className="font-semibold truncate">{event.title}</p>
+                             </div>
+                           ))}
+                        </div>
+                         <button onClick={() => openAddModal(date)} className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 text-purple-500 hover:text-purple-700 transition-opacity">
+                           <PlusCircle size={20} />
+                         </button>
                       </div>
-                      <div className="flex-grow overflow-y-auto mt-1 space-y-1 text-xs">
-                         {events.map(event => (
-                           <div key={event.id} onClick={() => openEditModal(event)} className={`p-1 rounded cursor-pointer ${colorClasses[event.color] || colorClasses.blue}`}>
-                             <p className="font-semibold truncate">{event.title}</p>
-                           </div>
-                         ))}
-                      </div>
-                       <button onClick={() => openAddModal(date)} className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 text-purple-500 hover:text-purple-700 transition-opacity">
-                         <PlusCircle size={20} />
-                       </button>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
             {/* --- Interactive Calendar End --- */}
