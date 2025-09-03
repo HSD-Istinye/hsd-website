@@ -161,6 +161,8 @@ const App = () => {
   };
 
 
+  const scrollWidth = `calc(-${sponsors.length * 10}rem)`;
+
   return (
     <>
       <style>{`
