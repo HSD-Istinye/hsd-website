@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useMemo } from 'react';
 import { Code, Zap, Mic, Users, Eye, Handshake, ArrowRight, ChevronLeft, ChevronRight, X, Trash2, PlusCircle, Lock } from 'lucide-react';
 //HSD WEBSITE 
@@ -160,8 +161,6 @@ const App = () => {
     red: 'bg-red-100 text-red-800 border-l-4 border-red-500',
   };
 
-
-  const scrollWidth = `calc(-${sponsors.length * 10}rem)`;
 
   return (
     <>
