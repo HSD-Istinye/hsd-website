@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Code, Zap, Mic, Users, Eye, Handshake, ArrowRight, ChevronLeft, ChevronRight, X, Trash2, PlusCircle, Lock } from 'lucide-react';
-
+//HSD WEBSITE 
 // A simple utility to format dates as YYYY-MM-DD
 const formatDate = (date) => {
   if (!date) return '';
@@ -44,7 +44,6 @@ const App = () => {
   const [passwordError, setPasswordError] = useState('');
   const [actionToPerform, setActionToPerform] = useState(null);
   const HARDCODED_PASSWORD = 'hsd'; 
-
   // --- Calendar Logic ---
   const handlePrevMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
