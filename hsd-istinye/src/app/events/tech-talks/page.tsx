@@ -33,7 +33,11 @@ export default function TechTalksPage() {
 
         <div className="space-y-6">
           {/* Card 1 */}
-          <div className="bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+          <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+            <div className="absolute right-4 top-4">
+              <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-purple-500 to-indigo-600 shadow-sm ring-1 ring-white/20">234 Attendees</div>
+            </div>
+
             <div className="flex items-start gap-6">
               <div className="w-28 h-28 rounded-lg flex flex-col items-center justify-center text-white font-semibold text-sm bg-gradient-to-br from-purple-500 to-indigo-600">
                 <div className="text-3xl mb-2" role="img" aria-label="robot">🤖</div>
@@ -47,14 +51,14 @@ export default function TechTalksPage() {
                 <div className="mt-3 text-sm text-gray-500">Dr. Sarah Chen • Senior AI Researcher at Google</div>
               </div>
             </div>
-
-            <div className="ml-auto">
-              <div className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">234 Attendees</div>
-            </div>
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+          <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+            <div className="absolute right-4 top-4">
+              <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-green-400 to-emerald-600 shadow-sm ring-1 ring-white/20">187 Attendees</div>
+            </div>
+
             <div className="flex items-start gap-6">
               <div className="w-28 h-28 rounded-lg flex flex-col items-center justify-center text-white font-semibold text-sm bg-gradient-to-br from-green-400 to-emerald-600">
                 <div className="text-3xl mb-2" role="img" aria-label="leaf">🍃</div>
@@ -68,14 +72,14 @@ export default function TechTalksPage() {
                 <div className="mt-3 text-sm text-gray-500">Mark Rodriguez • CTO at EcoTech Solutions</div>
               </div>
             </div>
-
-            <div className="ml-auto">
-              <div className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">187 Attendees</div>
-            </div>
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+          <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+            <div className="absolute right-4 top-4">
+              <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-pink-500 to-rose-500 shadow-sm ring-1 ring-white/20">156 Attendees</div>
+            </div>
+
             <div className="flex items-start gap-6">
               <div className="w-28 h-28 rounded-lg flex flex-col items-center justify-center text-white font-semibold text-sm bg-gradient-to-br from-pink-500 to-rose-500">
                 <div className="text-3xl mb-2" role="img" aria-label="cybersecurity">🛡️</div>
@@ -89,14 +93,14 @@ export default function TechTalksPage() {
                 <div className="mt-3 text-sm text-gray-500">Alex Thompson • Security Engineer at Microsoft</div>
               </div>
             </div>
-
-            <div className="ml-auto">
-              <div className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">156 Attendees</div>
-            </div>
           </div>
 
           {/* Card 4 */}
-          <div className="bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+          <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+            <div className="absolute right-4 top-4">
+              <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-orange-400 to-red-500 shadow-sm ring-1 ring-white/20">206 Attendees</div>
+            </div>
+
             <div className="flex items-start gap-6">
               <div className="w-28 h-28 rounded-lg flex flex-col items-center justify-center text-white font-semibold text-sm bg-gradient-to-br from-orange-400 to-red-500">
                 <div className="text-3xl mb-2" role="img" aria-label="startups">🚀</div>
@@ -110,14 +114,14 @@ export default function TechTalksPage() {
                 <div className="mt-3 text-sm text-gray-500">Lisa Park • Founder & CEO of TechVentures</div>
               </div>
             </div>
-
-            <div className="ml-auto">
-              <div className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">206 Attendees</div>
-            </div>
           </div>
 
           {/* Card 5 */}
-          <div className="bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+          <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
+            <div className="absolute right-4 top-4">
+              <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-sky-500 to-blue-600 shadow-sm ring-1 ring-white/20">167 Attendees</div>
+            </div>
+
             <div className="flex items-start gap-6">
               <div className="w-28 h-28 rounded-lg flex flex-col items-center justify-center text-white font-semibold text-sm bg-gradient-to-br from-sky-500 to-blue-600">
                 <div className="text-3xl mb-2" role="img" aria-label="performance">⚡</div>
@@ -130,10 +134,6 @@ export default function TechTalksPage() {
                 <p className="text-sm text-gray-600 mt-2">Techniques for building lightning fast web applications, including optimization strategies, caching mechanisms, and performance monitoring.</p>
                 <div className="mt-3 text-sm text-gray-500">David Kim • Principal Engineer at Netflix</div>
               </div>
-            </div>
-
-            <div className="ml-auto">
-              <div className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">167 Attendees</div>
             </div>
           </div>
         </div>

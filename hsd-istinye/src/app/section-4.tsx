@@ -42,7 +42,7 @@ export default function Section4() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">Email</div>
-                      <div className="text-white">hsd@istinye.edu.tr</div>
+                      <div className="text-white">hsdistinye@gmail.com</div>
                     </div>
                   </li>
 
@@ -63,15 +63,25 @@ export default function Section4() {
               </div>
 
               {/* SOSYAL - Takip butonları
-                  - X, Instagram, LinkedIn linkleri var.
+                  - YouTube, Instagram, LinkedIn linkleri var.
                   - Her buton new tab açıyor (target + rel) ve onClick ile window.open güvenliği sağlanıyor. */}
               <div>
                 <h4 className="text-white font-medium mb-3">Follow Us</h4>
                 <div className="flex gap-3">
-                  {/* X button (placeholder link).*/}
-                  <a className="bg-[#6b21a8] p-3 rounded-md inline-flex items-center justify-center" aria-label="X" href="#" title="X">
+                  <a
+                    className="bg-[#6b21a8] p-3 rounded-md inline-flex items-center justify-center cursor-pointer"
+                    aria-label="YouTube"
+                    href="https://www.youtube.com/c/HuaweiDeveloperGroupsT%C3%BCrkiye"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="YouTube"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.open("https://www.youtube.com/c/HuaweiDeveloperGroupsT%C3%BCrkiye", "_blank", "noopener,noreferrer");
+                    }}
+                  >
                     <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M23 3a1 1 0 0 0-1.3-.1L13 9.4 8.4 5 3.7 9.7A1 1 0 0 0 5 12.1l4.7-4.7L13 13l8.7-8.7A1 1 0 0 0 23 3z" />
+                      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 0.5 5.8a3 3 0 0 0 2.1 2.12C4.4 20.5 12 20.5 12 20.5s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.12C24 16 24 12 24 12s0-4-0.5-5.8zM9.8 15.5V8.5l6 3.5-6 3.5z" />
                     </svg>
                   </a>
 

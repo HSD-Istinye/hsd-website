@@ -42,9 +42,10 @@ const Section3: React.FC = () => {
               Join us for exciting workshops, hackathons, and networking events designed to enhance your coding skills
             </p>
 
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {/* Card 1: Coding Workshops (reworked layout) */}
-              <div className="rounded-xl shadow-lg overflow-hidden">
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+
+              {/* Card 1: Coding Workshops (reworked layout, fixed height & footer alignment) */}
+              <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
                 <div className="bg-gradient-to-br from-blue-400 to-indigo-600 p-8 text-white flex flex-col items-center gap-4">
                   <div className="p-3 rounded-lg bg-white/10">
                     <Laptop size={36} />
@@ -52,12 +53,14 @@ const Section3: React.FC = () => {
                   <h3 className="text-xl font-bold">Coding Workshops</h3>
                 </div>
 
-                <div className="bg-white p-6">
-                  <p className="text-gray-600 mb-6">
-                    Hands-on workshops covering the latest technologies, frameworks, and development practices.
-                  </p>
+                <div className="bg-white p-6 flex flex-col flex-1">
+                  <div className="flex-1">
+                    <p className="text-gray-600 mb-6">
+                      Hands-on workshops covering the latest technologies, frameworks, and development practices.
+                    </p>
+                  </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="mt-auto flex items-center justify-between">
                     <div className="text-left">
                       <div className="font-semibold text-gray-800">250+ Participants</div>
                       <div className="text-xs text-gray-500 mt-1">Weekly • Saturdays • 8 Workshops Held</div>
@@ -70,8 +73,8 @@ const Section3: React.FC = () => {
                 </div>
               </div>
 
-              {/* Card 2: Hackathons (reworked layout) */}
-              <div className="rounded-xl shadow-lg overflow-hidden">
+              {/* Card 2: Hackathons (fixed height & footer alignment) */}
+              <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
                 <div className="bg-gradient-to-br from-pink-500 to-purple-500 p-8 text-white flex flex-col items-center gap-4">
                   <div className="p-3 rounded-lg bg-white/10">
                     <Trophy size={36} />
@@ -79,12 +82,14 @@ const Section3: React.FC = () => {
                   <h3 className="text-xl font-bold">Hackathons</h3>
                 </div>
 
-                <div className="bg-white p-6">
-                  <p className="text-gray-600 mb-6">
-                    24-hour coding competitions where teams build innovative solutions to real-world problems.
-                  </p>
+                <div className="bg-white p-6 flex flex-col flex-1">
+                  <div className="flex-1">
+                    <p className="text-gray-600 mb-6">
+                      24-hour coding competitions where teams build innovative solutions to real-world problems.
+                    </p>
+                  </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="mt-auto flex items-center justify-between">
                     <div className="text-left">
                       <div className="font-semibold text-gray-800">250+ Participants</div>
                       <div className="text-xs text-gray-500 mt-1">Monthly • Weekends • 5 Events Completed</div>
@@ -97,8 +102,8 @@ const Section3: React.FC = () => {
                 </div>
               </div>
 
-              {/* Card 3: Tech Talks (reworked layout) */}
-              <div className="rounded-xl shadow-lg overflow-hidden">
+              {/* Card 3: Tech Talks (fixed height & footer alignment) */}
+              <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
                 <div className="bg-gradient-to-br from-green-400 to-teal-400 p-8 text-white flex flex-col items-center gap-4">
                   <div className="p-3 rounded-lg bg-white/10">
                     <Mic size={36} />
@@ -106,12 +111,14 @@ const Section3: React.FC = () => {
                   <h3 className="text-xl font-bold">Tech Talks</h3>
                 </div>
 
-                <div className="bg-white p-6">
-                  <p className="text-gray-600 mb-6">
-                    Industry experts share insights on emerging technologies and career development.
-                  </p>
+                <div className="bg-white p-6 flex flex-col flex-1">
+                  <div className="flex-1">
+                    <p className="text-gray-600 mb-6">
+                      Industry experts share insights on emerging technologies and career development.
+                    </p>
+                  </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="mt-auto flex items-center justify-between">
                     <div className="text-left">
                       <div className="font-semibold text-gray-800">250+ Participants</div>
                       <div className="text-xs text-gray-500 mt-1">Bi-weekly • Thursdays • 12 Talks Given</div>
