@@ -1,6 +1,14 @@
-import React from 'react';
+"use client"
+import React, { useCallback } from 'react';
 
 const HuaweiStudentDevelopers = () => {
+  const scrollToSection = useCallback((sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="max-w-6xl w-full bg-white rounded-xl shadow-md overflow-hidden">
@@ -18,12 +26,31 @@ const HuaweiStudentDevelopers = () => {
               </h1>
             </div>
 
-            {}
             <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-900 hover:text-purple-600 transition-colors">Who are we?</a>
-              <a href="#" className="text-gray-900 hover:text-purple-600 transition-colors">Our Events</a>
-              <a href="#" className="text-gray-900 hover:text-purple-600 transition-colors">Sponsorships</a>
-              <a href="#" className="text-gray-900 hover:text-purple-600 transition-colors">Contact Us</a>
+              <button 
+                onClick={() => scrollToSection('who-are-we')} 
+                className="text-gray-900 hover:text-purple-600 transition-colors"
+              >
+                Who are we?
+              </button>
+              <button 
+                onClick={() => scrollToSection('our-events')} 
+                className="text-gray-900 hover:text-purple-600 transition-colors"
+              >
+                Our Events
+              </button>
+              <button 
+                onClick={() => scrollToSection('sponsorships')} 
+                className="text-gray-900 hover:text-purple-600 transition-colors"
+              >
+                Sponsorships
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact-us')} 
+                className="text-gray-900 hover:text-purple-600 transition-colors"
+              >
+                Contact Us
+              </button>
             </nav>
 
             {/* Mobile menu button */}
@@ -38,43 +65,52 @@ const HuaweiStudentDevelopers = () => {
         </div>
 
         {/* Hero (VIDEO BACKGROUND) */}
-        <section className="relative overflow-hidden">
-          {/* Video layer */}
-          {/* Video layer */}
-        <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        controls={false}
-        disablePictureInPicture
-        aria-hidden="true"
-     >
-      <source src="/videos/hero.mp4" type="video/mp4" />
-      {/* Tarayıcı video desteklemezse mor arkaplan fallback */}
-    </video>
+        <section className="relative overflow-hidden h-screen">
+          {/* Video container - Kesin çözüm */}
+          <div className="absolute inset-0 w-full h-full">
+            <video
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center center'
+              }}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              controls={false}
+              disablePictureInPicture
+              aria-hidden="true"
+            >
+              <source src="/videos/hero.mp4" type="video/mp4" />
+              {/* Tarayıcı video desteklemezse mor arkaplan fallback */}
+            </video>
+          </div>
 
           {/* Mor overlay (okunabilirlik için) */}
           <div className="absolute inset-0 bg-gradient-to-b from-purple-700/40 to-purple-700/10" />
 
           {/* Content layer */}
-          <div className="relative px-8 py-20 md:py-28 text-center text-white">
+          <div className="relative z-10 h-full flex flex-col items-center justify-center px-8 text-center text-white">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4">Huawei Student Developers</h2>
             <p className="text-2xl mb-6 opacity-90">Istinye University</p>
             <p className="text-lg max-w-2xl mx-auto mb-8 opacity-90">
               Empowering the next generation of developers through innovation, collaboration, and cutting-edge technology
             </p>
-            {/* Çizgi KALDIRILDI */}
-            <button className="bg-white text-purple-700 font-medium py-3 px-8 rounded-full transition hover:bg-opacity-90 mt-6">
+            <button 
+              onClick={() => scrollToSection('who-are-we')} 
+              className="bg-white text-purple-700 font-medium py-3 px-8 rounded-full transition hover:bg-opacity-90 mt-6"
+            >
               Learn More
             </button>
           </div>
         </section>
 
         {/* Who are we + Vision */}
-        <section className="px-8 py-12">
+        <section id="who-are-we" className="px-8 py-12">
           {/* Başlık ortada */}
           <h3 className="text-3xl font-bold text-gray-800 text-center mb-6">Who are we?</h3>
           <div className="w-20 h-1 bg-purple-600 mb-12 mx-auto" />

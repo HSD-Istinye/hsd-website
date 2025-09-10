@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code, Zap, Mic, Users, Eye, Handshake, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface SponsorLogoProps {
   name: string;
@@ -35,7 +36,7 @@ const Section3: React.FC = () => {
         <div className="max-w-7xl mx-auto">
 
           {/* Our Events Section */}
-          <section className="text-center mb-20">
+          <section id="our-events" className="text-center mb-20">
             <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600">
               Join us for exciting workshops, hackathons, and networking events designed to enhance your coding skills
@@ -87,7 +88,7 @@ const Section3: React.FC = () => {
           </section>
 
           {/* Sponsorships Section */}
-          <section className="text-center">
+          <section id="sponsorships" className="text-center">
             <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12">
               Partner with us to support the next generation of developers and gain access to top talent
@@ -136,11 +137,11 @@ const Section3: React.FC = () => {
 
             {/* Call to Action */}
             <div className="mt-12">
-              <button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto">
+              <Link href="/form" className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto w-fit">
                 <span role="img" aria-label="rocket" className="mr-2">🚀</span>
                 Become a Sponsor
                 <ArrowRight className="ml-3" size={20} />
-              </button>
+              </Link>
               <p className="text-gray-500 mt-4 text-sm">Join leading companies supporting innovation</p>
             </div>
           </section>
