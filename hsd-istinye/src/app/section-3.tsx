@@ -1,6 +1,11 @@
-import React from 'react';
+// ...existing code...
+"use client";
+import React from "react";
 import Link from "next/link";
-import { Code, Zap, Trophy, Laptop, Mic, Users, Eye, Handshake, ArrowRight } from 'lucide-react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Code, Zap, Trophy, Laptop, Mic, Users, Eye, Handshake, ArrowRight } from "lucide-react";
 
 interface SponsorLogoProps {
   name: string;
@@ -12,10 +17,124 @@ const SponsorLogo: React.FC<SponsorLogoProps> = ({ name }) => (
   </div>
 );
 
+const NextArrow: React.FC<any> = ({ onClick }) => (
+  <button
+    type="button"
+    aria-label="Next"
+    onClick={onClick}
+    className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-50"
+  >
+    <ArrowRight size={20} />
+  </button>
+);
+
+const PrevArrow: React.FC<any> = ({ onClick }) => (
+  <button
+    type="button"
+    aria-label="Previous"
+    onClick={onClick}
+    className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-50"
+  >
+    <ArrowRight size={20} className="rotate-180" />
+  </button>
+);
+
 const Section3: React.FC = () => {
   const sponsors: string[] = ["Meta", "Apple", "Huawei", "Microsoft", "Google", "Amazon", "Netflix"];
 
   const scrollWidth = `calc(-${sponsors.length * 10}rem)`;
+
+  const eventCards = [
+    {
+      key: "workshops",
+      title: "Coding Workshops",
+      icon: <Laptop size={36} />,
+      headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
+      description:
+        "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
+      participants: "250+ Participants",
+      meta: "Weekly • Saturdays • 8 Workshops Held",
+      href: "/events/workshops",
+      buttonClasses: "bg-indigo-600 hover:bg-indigo-700",
+    },
+    {
+      key: "hackathons",
+      title: "Hackathons",
+      icon: <Trophy size={36} />,
+      headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
+      description:
+        "24-hour coding competitions where teams build innovative solutions to real-world problems.",
+      participants: "250+ Participants",
+      meta: "Monthly • Weekends • 5 Events Completed",
+      href: "/events/hackathons",
+      buttonClasses: "bg-pink-600 hover:bg-pink-700",
+    },
+    {
+      key: "talks",
+      title: "Tech Talks",
+      icon: <Mic size={36} />,
+      headerClasses: "bg-gradient-to-br from-green-400 to-teal-400",
+      description: "Industry experts share insights on emerging technologies and career development.",
+      participants: "250+ Participants",
+      meta: "Bi-weekly • Thursdays • 12 Talks Given",
+      href: "/events/tech-talks",
+      buttonClasses: "bg-green-600 hover:bg-green-700",
+    },
+    {
+      key: "hackathons",
+      title: "Hackathons",
+      icon: <Trophy size={36} />,
+      headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
+      description:
+        "24-hour coding competitions where teams build innovative solutions to real-world problems.",
+      participants: "250+ Participants",
+      meta: "Monthly • Weekends • 5 Events Completed",
+      href: "/events/hackathons",
+      buttonClasses: "bg-pink-600 hover:bg-pink-700",
+    },
+    {
+      key: "workshops",
+      title: "Coding Workshops",
+      icon: <Laptop size={36} />,
+      headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
+      description:
+        "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
+      participants: "250+ Participants",
+      meta: "Weekly • Saturdays • 8 Workshops Held",
+      href: "/events/workshops",
+      buttonClasses: "bg-indigo-600 hover:bg-indigo-700",
+    },
+    {
+      key: "talks",
+      title: "Tech Talks",
+      icon: <Mic size={36} />,
+      headerClasses: "bg-gradient-to-br from-green-400 to-teal-400",
+      description: "Industry experts share insights on emerging technologies and career development.",
+      participants: "250+ Participants",
+      meta: "Bi-weekly • Thursdays • 12 Talks Given",
+      href: "/events/tech-talks",
+      buttonClasses: "bg-green-600 hover:bg-green-700",
+    },
+  ];
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: Math.min(3, eventCards.length),
+    slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: Math.min(3, eventCards.length) } },
+      { breakpoint: 768, settings: { slidesToShow: Math.min(2, eventCards.length) } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } },
+    ],
+  };
 
   return (
     <>
@@ -34,7 +153,6 @@ const Section3: React.FC = () => {
 
       <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-
           {/* Our Events Section */}
           <section className="text-center mb-20">
             <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
@@ -42,94 +160,37 @@ const Section3: React.FC = () => {
               Join us for exciting workshops, hackathons, and networking events designed to enhance your coding skills
             </p>
 
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+            {/* Carousel replacing the original grid but keeping cards content */}
+            <div className="mt-12 relative">
+              <Slider {...sliderSettings} className="event-slider">
+                {eventCards.map((card) => (
+                  <div key={card.key} className="px-3">
+                    <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
+                      <div className={`${card.headerClasses} p-8 text-white flex flex-col items-center gap-4`}>
+                        <div className="p-3 rounded-lg bg-white/10">{card.icon}</div>
+                        <h3 className="text-xl font-bold">{card.title}</h3>
+                      </div>
 
-              {/* Card 1: Coding Workshops (reworked layout, fixed height & footer alignment) */}
-              <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
-                <div className="bg-gradient-to-br from-blue-400 to-indigo-600 p-8 text-white flex flex-col items-center gap-4">
-                  <div className="p-3 rounded-lg bg-white/10">
-                    <Laptop size={36} />
-                  </div>
-                  <h3 className="text-xl font-bold">Coding Workshops</h3>
-                </div>
+                      <div className="bg-white p-6 flex flex-col flex-1">
+                        <div className="flex-1">
+                          <p className="text-gray-600 mb-6">{card.description}</p>
+                        </div>
 
-                <div className="bg-white p-6 flex flex-col flex-1">
-                  <div className="flex-1">
-                    <p className="text-gray-600 mb-6">
-                      Hands-on workshops covering the latest technologies, frameworks, and development practices.
-                    </p>
-                  </div>
+                        <div className="mt-auto flex items-center justify-between">
+                          <div className="text-left">
+                            <div className="font-semibold text-gray-800">{card.participants}</div>
+                            <div className="text-xs text-gray-500 mt-1">{card.meta}</div>
+                          </div>
 
-                  <div className="mt-auto flex items-center justify-between">
-                    <div className="text-left">
-                      <div className="font-semibold text-gray-800">250+ Participants</div>
-                      <div className="text-xs text-gray-500 mt-1">Weekly • Saturdays • 8 Workshops Held</div>
+                          <Link href={card.href} className={`text-sm ${card.buttonClasses} text-white px-3 py-2 rounded-full`}>
+                            View Details →
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-
-                    <Link href="/events/workshops" className="text-sm bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-full">
-                      View Details →
-                    </Link>
                   </div>
-                </div>
-              </div>
-
-              {/* Card 2: Hackathons (fixed height & footer alignment) */}
-              <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
-                <div className="bg-gradient-to-br from-pink-500 to-purple-500 p-8 text-white flex flex-col items-center gap-4">
-                  <div className="p-3 rounded-lg bg-white/10">
-                    <Trophy size={36} />
-                  </div>
-                  <h3 className="text-xl font-bold">Hackathons</h3>
-                </div>
-
-                <div className="bg-white p-6 flex flex-col flex-1">
-                  <div className="flex-1">
-                    <p className="text-gray-600 mb-6">
-                      24-hour coding competitions where teams build innovative solutions to real-world problems.
-                    </p>
-                  </div>
-
-                  <div className="mt-auto flex items-center justify-between">
-                    <div className="text-left">
-                      <div className="font-semibold text-gray-800">250+ Participants</div>
-                      <div className="text-xs text-gray-500 mt-1">Monthly • Weekends • 5 Events Completed</div>
-                    </div>
-
-                    <Link href="/events/hackathons" className="text-sm bg-pink-600 hover:bg-pink-700 text-white px-3 py-2 rounded-full">
-                      View Details →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 3: Tech Talks (fixed height & footer alignment) */}
-              <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
-                <div className="bg-gradient-to-br from-green-400 to-teal-400 p-8 text-white flex flex-col items-center gap-4">
-                  <div className="p-3 rounded-lg bg-white/10">
-                    <Mic size={36} />
-                  </div>
-                  <h3 className="text-xl font-bold">Tech Talks</h3>
-                </div>
-
-                <div className="bg-white p-6 flex flex-col flex-1">
-                  <div className="flex-1">
-                    <p className="text-gray-600 mb-6">
-                      Industry experts share insights on emerging technologies and career development.
-                    </p>
-                  </div>
-
-                  <div className="mt-auto flex items-center justify-between">
-                    <div className="text-left">
-                      <div className="font-semibold text-gray-800">250+ Participants</div>
-                      <div className="text-xs text-gray-500 mt-1">Bi-weekly • Thursdays • 12 Talks Given</div>
-                    </div>
-
-                    <Link href="/events/tech-talks" className="text-sm bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-full">
-                      View Details →
-                    </Link>
-                  </div>
-                </div>
-              </div>
+                ))}
+              </Slider>
             </div>
           </section>
 
@@ -140,12 +201,11 @@ const Section3: React.FC = () => {
               Partner with us to support the next generation of developers and gain access to top talent
             </p>
 
-            {/* Our Sponsors - Sliding Marquee */}
+            {/* Our Sponsors*/}
             <div className="mb-16">
               <h3 className="text-xl font-bold text-gray-700 mb-8">Our Sponsors</h3>
               <div className="relative w-full overflow-hidden group">
                 <div className="flex w-max animate-scroll">
-                  {/* Render logos twice for a seamless loop */}
                   {[...sponsors, ...sponsors].map((sponsor, index) => (
                     <SponsorLogo key={`${sponsor}-${index}`} name={sponsor} />
                   ))}
@@ -191,7 +251,6 @@ const Section3: React.FC = () => {
               <p className="text-gray-500 mt-4 text-sm">Join leading companies supporting innovation</p>
             </div>
           </section>
-
         </div>
       </div>
     </>
