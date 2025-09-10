@@ -1,4 +1,4 @@
-// ...existing code...
+
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -50,8 +50,7 @@ const Section3: React.FC = () => {
       title: "Coding Workshops",
       icon: <Laptop size={36} />,
       headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
-      description:
-        "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
+      description:"Hands-on workshops covering the latest technologies, frameworks, and development practices.",
       participants: "250+ Participants",
       meta: "Weekly • Saturdays • 8 Workshops Held",
       href: "/events/workshops",
@@ -97,8 +96,7 @@ const Section3: React.FC = () => {
       title: "Coding Workshops",
       icon: <Laptop size={36} />,
       headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
-      description:
-        "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
+      description:"Hands-on workshops covering the latest technologies, frameworks, and development practices.",
       participants: "250+ Participants",
       meta: "Weekly • Saturdays • 8 Workshops Held",
       href: "/events/workshops",
@@ -126,7 +124,7 @@ const Section3: React.FC = () => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     responsive: [
@@ -149,6 +147,10 @@ const Section3: React.FC = () => {
         .group:hover .animate-scroll {
           animation-play-state: paused;
         }
+        .event-slider .slick-track { display: flex !important; align-items: stretch; }
+        .event-slider .slick-slide { height: auto; display: flex; align-items: stretch; }
+        .event-slider .slick-slide > div { width: 100%; display: flex; flex-direction: column; }
+
       `}</style>
 
       <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
@@ -164,7 +166,7 @@ const Section3: React.FC = () => {
             <div className="mt-12 relative">
               <Slider {...sliderSettings} className="event-slider">
                 {eventCards.map((card) => (
-                  <div key={card.key} className="px-3">
+                  <div key={card.key} className="px-3 h-full">
                     <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
                       <div className={`${card.headerClasses} p-8 text-white flex flex-col items-center gap-4`}>
                         <div className="p-3 rounded-lg bg-white/10">{card.icon}</div>
@@ -175,7 +177,6 @@ const Section3: React.FC = () => {
                         <div className="flex-1">
                           <p className="text-gray-600 mb-6">{card.description}</p>
                         </div>
-
                         <div className="mt-auto flex items-center justify-between">
                           <div className="text-left">
                             <div className="font-semibold text-gray-800">{card.participants}</div>
