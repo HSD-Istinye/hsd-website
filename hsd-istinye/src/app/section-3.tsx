@@ -1,12 +1,5 @@
-"use client";
-
 import React from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Code, Zap, Mic, Users, Eye, Handshake, ArrowRight } from 'lucide-react';
-
-
 
 interface SponsorLogoProps {
   name: string;
@@ -18,107 +11,37 @@ const SponsorLogo: React.FC<SponsorLogoProps> = ({ name }) => (
   </div>
 );
 
+const NextArrow: React.FC<any> = ({ onClick }) => (
+  <button
+    type="button"
+    aria-label="Next"
+    onClick={onClick}
+    className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-50"
+  >
+    <ArrowRight size={20} />
+  </button>
+);
+
+const PrevArrow: React.FC<any> = ({ onClick }) => (
+  <button
+    type="button"
+    aria-label="Previous"
+    onClick={onClick}
+    className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-50"
+  >
+    <ArrowRight size={20} className="rotate-180" />
+  </button>
+);
+
 const Section3: React.FC = () => {
   const sponsors: string[] = ["Meta", "Apple", "Huawei", "Microsoft", "Google", "Amazon", "Netflix"];
-
-  const scrollWidth = `calc(-${sponsors.length * 10}rem)`;
-
-  const eventCards = [
-    {
-      icon: <Handshake size={28} className="text-white" />,
-      iconBg: "bg-gradient-to-br from-yellow-400 to-orange-300",
-      title: "Collaborations",
-      desc: "Collaborative sessions where students work on projects together with guidance from experts.",
-      time: "Weekly • Mondays",
-      timeColor: "text-yellow-600",
-    },
-    {
-      icon: <Code size={28} className="text-white" />,
-      iconBg: "bg-gradient-to-br from-purple-500 to-indigo-600",
-      title: "Coding Workshops",
-      desc: "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
-      time: "Weekly • Saturdays",
-      timeColor: "text-purple-600",
-    },
-    {
-      icon: <Zap size={28} className="text-white" />,
-      iconBg: "bg-gradient-to-br from-green-400 to-teal-500",
-      title: "Hackathons",
-      desc: "24-hour coding competitions where teams build innovative solutions to real-world problems.",
-      time: "Monthly • Weekends",
-      timeColor: "text-green-600",
-    },
-        {
-      icon: <Code size={28} className="text-white" />,
-      iconBg: "bg-gradient-to-br from-purple-500 to-indigo-600",
-      title: "Coding Workshops",
-      desc: "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
-      time: "Weekly • Saturdays",
-      timeColor: "text-purple-600",
-    },
-        {
-      icon: <Zap size={28} className="text-white" />,
-      iconBg: "bg-gradient-to-br from-green-400 to-teal-500",
-      title: "Hackathons",
-      desc: "24-hour coding competitions where teams build innovative solutions to real-world problems.",
-      time: "Monthly • Weekends",
-      timeColor: "text-green-600",
-    },
-    
-  ];
-
-  // Custom arrow components
-const NextArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <div
-      className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 cursor-pointer text-gray-700 hover:text-gray-900"
-      onClick={onClick}
-    >
-      <ArrowRight size={28} />
-    </div>
-  );
-};
-
-const PrevArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <div
-      className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 cursor-pointer text-gray-700 hover:text-gray-900"
-      onClick={onClick}
-    >
-      <ArrowRight size={28} className="rotate-180" />
-    </div>
-  );
-};
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: Math.min(3, eventCards.length),
-    slidesToScroll: 1,
-    arrows: true,          
-    autoplay: true,        
-    autoplaySpeed: 3000,   
-    pauseOnHover: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: Math.min(3, eventCards.length) } },
-      { breakpoint: 768, settings: { slidesToShow: Math.min(2, eventCards.length) } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
-    ],
-  };
-
-
 
   return (
     <>
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-100% - 1rem * ${sponsors.length})); }
+          100% { transform: translateX(${scrollWidth}); }
         }
         .animate-scroll {
           animation: scroll 30s linear infinite;
@@ -126,39 +49,63 @@ const PrevArrow = (props: any) => {
         .group:hover .animate-scroll {
           animation-play-state: paused;
         }
+        .event-slider .slick-track { display: flex !important; align-items: stretch; }
+        .event-slider .slick-slide { height: auto; display: flex; align-items: stretch; }
+        .event-slider .slick-slide > div { width: 100%; display: flex; flex-direction: column; }
+
       `}</style>
 
       <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
 
-             {/* Events Section */}
+          {/* Our Events Section */}
           <section className="text-center mb-20">
             <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600">
               Join us for exciting workshops, hackathons, and networking events designed to enhance your coding skills
             </p>
 
-            <div className="event-slider-wrapper relative px-4 sm:px-6 lg:px-8">
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {/* Card 1: Coding Workshops */}
+              <div className="bg-white rounded-xl shadow-lg p-8 text-left transform hover:-translate-y-2 transition-transform duration-300">
+                <div className="p-4 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 inline-block mb-6">
+                  <Code className="text-white" size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Coding Workshops</h3>
+                <p className="text-gray-600 mb-6">
+                  Hands-on workshops covering the latest technologies, frameworks, and development practices.
+                </p>
+                <div className="text-sm">
+                  <span className="text-purple-600 font-semibold">Weekly • Saturdays</span>
+                </div>
+              </div>
 
-              <div className="mt-12  max-w-7xl mx-auto">
-                <Slider {...sliderSettings} className="pb-12">
-                  {eventCards.map((card, idx) => (
-                    <div key={idx} className="px-4">
-                      <div className="bg-white rounded-2xl border shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 h-full flex flex-col justify-between text-left">
-                        <div>
-                          <div className={`p-4 rounded-lg inline-block mb-6 ${card.iconBg}`}>
-                            {card.icon}
-                          </div>
-                          <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-                          <p className="text-gray-600 mb-6">{card.desc}</p>
-                        </div>
-                        <div className="text-sm">
-                          <span className={`${card.timeColor} font-semibold`}>{card.time}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
+              {/* Card 2: Hackathons */}
+              <div className="bg-white rounded-xl shadow-lg p-8 text-left transform hover:-translate-y-2 transition-transform duration-300">
+                <div className="p-4 rounded-lg bg-gradient-to-br from-green-400 to-teal-500 inline-block mb-6">
+                  <Zap className="text-white" size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Hackathons</h3>
+                <p className="text-gray-600 mb-6">
+                  24-hour coding competitions where teams build innovative solutions to real-world problems.
+                </p>
+                <div className="text-sm">
+                  <span className="text-green-600 font-semibold">Monthly • Weekends</span>
+                </div>
+              </div>
+
+              {/* Card 3: Tech Talks */}
+              <div className="bg-white rounded-xl shadow-lg p-8 text-left transform hover:-translate-y-2 transition-transform duration-300">
+                <div className="p-4 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 inline-block mb-6">
+                  <Mic className="text-white" size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Tech Talks</h3>
+                <p className="text-gray-600 mb-6">
+                  Industry experts share insights on emerging technologies and career development.
+                </p>
+                <div className="text-sm">
+                  <span className="text-orange-600 font-semibold">Bi-weekly • Thursdays</span>
+                </div>
               </div>
             </div>
           </section>
@@ -172,12 +119,11 @@ const PrevArrow = (props: any) => {
               Partner with us to support the next generation of developers and gain access to top talent
             </p>
 
-            {/* Our Sponsors - Sliding Marquee */}
+            {/* Our Sponsors*/}
             <div className="mb-16">
               <h3 className="text-xl font-bold text-gray-700 mb-8">Our Sponsors</h3>
               <div className="relative w-full overflow-hidden group">
                 <div className="flex w-max animate-scroll">
-                  {/* Render logos twice for a seamless loop */}
                   {[...sponsors, ...sponsors].map((sponsor, index) => (
                     <SponsorLogo key={`${sponsor}-${index}`} name={sponsor} />
                   ))}
@@ -223,7 +169,6 @@ const PrevArrow = (props: any) => {
               <p className="text-gray-500 mt-4 text-sm">Join leading companies supporting innovation</p>
             </div>
           </section>
-
         </div>
         
 
@@ -233,3 +178,5 @@ const PrevArrow = (props: any) => {
 };
 
 export default Section3;
+
+
