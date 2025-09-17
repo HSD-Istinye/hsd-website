@@ -30,7 +30,7 @@ export default function WorkshopsPage() {
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Card 1 */}
-          <article className="bg-white rounded-xl shadow p-6 flex gap-4 items-start">
+          <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600 text-2xl">
                 <span role="img" aria-label="react">⚛️</span>
@@ -52,11 +52,23 @@ export default function WorkshopsPage() {
                   <li>Building a complete todo application</li>
                 </ul>
               </div>
+
+              {/*  Register butonu  */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "React Fundamentals"
+                  )}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           </article>
 
           {/* Card 2 */}
-          <article className="bg-white rounded-xl shadow p-6 flex gap-4 items-start">
+          <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-green-50 flex items-center justify-center text-green-600 text-2xl">
                 <span role="img" aria-label="python">🐍</span>
@@ -78,11 +90,23 @@ export default function WorkshopsPage() {
                   <li>Machine learning basics with scikit-learn</li>
                 </ul>
               </div>
+
+              {/* Register butonu  */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "Python for Data Science"
+                  )}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           </article>
 
           {/* Card 3 */}
-          <article className="bg-white rounded-xl shadow p-6 flex gap-4 items-start">
+          <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 text-2xl">
                 <span role="img" aria-label="nodejs">🟢</span>
@@ -104,11 +128,23 @@ export default function WorkshopsPage() {
                   <li>Authentication and middleware</li>
                 </ul>
               </div>
+
+              {/* Register butonu */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "Node.js & Express"
+                  )}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           </article>
 
           {/* Card 4 */}
-          <article className="bg-white rounded-xl shadow p-6 flex gap-4 items-start">
+          <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-yellow-50 flex items-center justify-center text-yellow-600 text-2xl">
                 <span role="img" aria-label="mobile">📱</span>
@@ -130,11 +166,23 @@ export default function WorkshopsPage() {
                   <li>Building and deploying apps</li>
                 </ul>
               </div>
+
+              {/* Register butonu */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "Flutter Mobile Development"
+                  )}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           </article>
 
           {/* Card 5 */}
-          <article className="bg-white rounded-xl shadow p-6 flex gap-4 items-start">
+          <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-pink-50 flex items-center justify-center text-pink-600 text-2xl">
                 <span role="img" aria-label="design">🎨</span>
@@ -156,11 +204,23 @@ export default function WorkshopsPage() {
                   <li>User research and testing</li>
                 </ul>
               </div>
+
+              {/* Register butonu */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "UI/UX Design Principles"
+                  )}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           </article>
 
           {/* Card 6 */}
-          <article className="bg-white rounded-xl shadow p-6 flex gap-4 items-start">
+          <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 text-2xl">
                 <span role="img" aria-label="cloud">☁️</span>
@@ -181,6 +241,18 @@ export default function WorkshopsPage() {
                   <li>Lambda functions and serverless</li>
                   <li>Deployment strategies</li>
                 </ul>
+              </div>
+
+              {/* Register butonu */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "AWS Cloud Fundamentals"
+                  )}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
               </div>
             </div>
           </article>

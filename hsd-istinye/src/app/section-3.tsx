@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -46,7 +45,7 @@ const Section3: React.FC = () => {
 
   const eventCards = [
     {
-      key: "workshops",
+      key: "workshops-1",
       title: "Coding Workshops",
       icon: <Laptop size={36} />,
       headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
@@ -57,7 +56,7 @@ const Section3: React.FC = () => {
       buttonClasses: "bg-indigo-600 hover:bg-indigo-700",
     },
     {
-      key: "hackathons",
+      key: "hackathons-1",
       title: "Hackathons",
       icon: <Trophy size={36} />,
       headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
@@ -69,7 +68,7 @@ const Section3: React.FC = () => {
       buttonClasses: "bg-pink-600 hover:bg-pink-700",
     },
     {
-      key: "talks",
+      key: "talks-1",
       title: "Tech Talks",
       icon: <Mic size={36} />,
       headerClasses: "bg-gradient-to-br from-green-400 to-teal-400",
@@ -80,7 +79,18 @@ const Section3: React.FC = () => {
       buttonClasses: "bg-green-600 hover:bg-green-700",
     },
     {
-      key: "hackathons",
+      key: "workshops-2",
+      title: "Coding Workshops",
+      icon: <Laptop size={36} />,
+      headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
+      description:"Hands-on workshops covering the latest technologies, frameworks, and development practices.",
+      participants: "250+ Participants",
+      meta: "Weekly • Saturdays • 8 Workshops Held",
+      href: "/events/workshops",
+      buttonClasses: "bg-indigo-600 hover:bg-indigo-700",
+    },
+    {
+      key: "hackathons-2",
       title: "Hackathons",
       icon: <Trophy size={36} />,
       headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
@@ -92,18 +102,7 @@ const Section3: React.FC = () => {
       buttonClasses: "bg-pink-600 hover:bg-pink-700",
     },
     {
-      key: "workshops",
-      title: "Coding Workshops",
-      icon: <Laptop size={36} />,
-      headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
-      description:"Hands-on workshops covering the latest technologies, frameworks, and development practices.",
-      participants: "250+ Participants",
-      meta: "Weekly • Saturdays • 8 Workshops Held",
-      href: "/events/workshops",
-      buttonClasses: "bg-indigo-600 hover:bg-indigo-700",
-    },
-    {
-      key: "talks",
+      key: "talks-2",
       title: "Tech Talks",
       icon: <Mic size={36} />,
       headerClasses: "bg-gradient-to-br from-green-400 to-teal-400",

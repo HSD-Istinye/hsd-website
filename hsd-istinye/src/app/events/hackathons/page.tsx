@@ -31,7 +31,7 @@ export default function HackathonsPage() {
         {/* Kart listesi */}
         <div className="space-y-6">
           {/* Card 1 */}
-          <article className="flex flex-col md:flex-row bg-white rounded-xl shadow-md overflow-hidden">
+          <article className="relative pb-12 flex flex-col md:flex-row bg-white rounded-xl shadow-md overflow-hidden">
             <div className="md:w-56 flex items-center justify-center p-6 bg-gradient-to-br from-pink-500 to-purple-500 text-white">
               <div className="text-center">
                 <div className="text-3xl mb-2" role="img" aria-label="rocket">🚀</div>
@@ -65,11 +65,23 @@ export default function HackathonsPage() {
               <div className="mt-4 text-sm text-gray-500">
                 Winner: <span className="font-medium text-gray-700">EcoAI</span> — an environmental monitoring system.
               </div>
+
+              {/* Register butonu */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "AI Innovation Hackathon 2025"
+                  )}&category=${encodeURIComponent("Hackathons")}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           </article>
 
           {/* Card 2 */}
-          <article className="flex flex-col md:flex-row bg-white rounded-xl shadow-md overflow-hidden">
+          <article className="relative pb-12 flex flex-col md:flex-row bg-white rounded-xl shadow-md overflow-hidden">
             <div className="md:w-56 flex items-center justify-center p-6 bg-gradient-to-br from-blue-500 to-indigo-400 text-white">
               <div className="text-center">
                 <div className="text-3xl mb-2" role="img" aria-label="network">🌐</div>
@@ -103,11 +115,23 @@ export default function HackathonsPage() {
               <div className="mt-4 text-sm text-gray-500">
                 Winner: <span className="font-medium text-gray-700">CommunityDAO</span> — a decentralized community management platform.
               </div>
+
+              {/* Register butonu */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "Web3 & Blockchain Hackathon"
+                  )}&category=${encodeURIComponent("Hackathons")}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           </article>
 
           {/* Card 3 */}
-          <article className="flex flex-col md:flex-row bg-white rounded-xl shadow-md overflow-hidden">
+          <article className="relative pb-12 flex flex-col md:flex-row bg-white rounded-xl shadow-md overflow-hidden">
             <div className="md:w-56 flex items-center justify-center p-6 bg-gradient-to-br from-green-400 to-teal-400 text-white">
               <div className="text-center">
                 <div className="text-3xl mb-2" role="img" aria-label="mobile-phone">📱</div>
@@ -140,6 +164,18 @@ export default function HackathonsPage() {
 
               <div className="mt-4 text-sm text-gray-500">
                 Winner: <span className="font-medium text-gray-700">StudyBuddy</span> — a collaborative learning platform for students.
+              </div>
+
+              {/* Register butonu */}
+              <div className="absolute bottom-4 right-4">
+                <Link
+                  href={`/events/register?event=${encodeURIComponent(
+                    "Mobile Innovation Challenge"
+                  )}&category=${encodeURIComponent("Hackathons")}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+                >
+                  Register
+                </Link>
               </div>
             </div>
           </article>

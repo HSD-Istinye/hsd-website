@@ -51,6 +51,18 @@ export default function TechTalksPage() {
                 <div className="mt-3 text-sm text-gray-500">Dr. Sarah Chen • Senior AI Researcher at Google</div>
               </div>
             </div>
+
+            {/* Register butonu */}
+            <div className="absolute bottom-4 right-4">
+              <Link
+                href={`/events/register?event=${encodeURIComponent(
+                  "The Future of AI in Software Development"
+                )}&category=${encodeURIComponent("Tech Talks")}`}
+                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+              >
+                Register
+              </Link>
+            </div>
           </div>
 
           {/* Card 2 */}
@@ -71,6 +83,18 @@ export default function TechTalksPage() {
                 <p className="text-sm text-gray-600 mt-2">Learn about sustainable software development practices, energy efficient coding techniques, and reducing the environmental impact of digital products.</p>
                 <div className="mt-3 text-sm text-gray-500">Mark Rodriguez • CTO at EcoTech Solutions</div>
               </div>
+            </div>
+
+            {/* Register butonu */}
+            <div className="absolute bottom-4 right-4">
+              <Link
+                href={`/events/register?event=${encodeURIComponent(
+                  "Green Computing: Building Sustainable Software"
+                )}&category=${encodeURIComponent("Tech Talks")}`}
+                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+              >
+                Register
+              </Link>
             </div>
           </div>
 
@@ -93,6 +117,18 @@ export default function TechTalksPage() {
                 <div className="mt-3 text-sm text-gray-500">Alex Thompson • Security Engineer at Microsoft</div>
               </div>
             </div>
+
+            {/* Register butonu */}
+            <div className="absolute bottom-4 right-4">
+              <Link
+                href={`/events/register?event=${encodeURIComponent(
+                  "Modern Web Security: Protecting User Data"
+                )}&category=${encodeURIComponent("Tech Talks")}`}
+                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+              >
+                Register
+              </Link>
+            </div>
           </div>
 
           {/* Card 4 */}
@@ -114,6 +150,18 @@ export default function TechTalksPage() {
                 <div className="mt-3 text-sm text-gray-500">Lisa Park • Founder & CEO of TechVentures</div>
               </div>
             </div>
+
+            {/*  Register butonu  */}
+            <div className="absolute bottom-4 right-4">
+              <Link
+                href={`/events/register?event=${encodeURIComponent(
+                  "From Idea to IPO: Building Tech Startups"
+                )}&category=${encodeURIComponent("Tech Talks")}`}
+                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+              >
+                Register
+              </Link>
+            </div>
           </div>
 
           {/* Card 5 */}
@@ -134,6 +182,18 @@ export default function TechTalksPage() {
                 <p className="text-sm text-gray-600 mt-2">Techniques for building lightning fast web applications, including optimization strategies, caching mechanisms, and performance monitoring.</p>
                 <div className="mt-3 text-sm text-gray-500">David Kim • Principal Engineer at Netflix</div>
               </div>
+            </div>
+
+            {/* Register butonu  */}
+            <div className="absolute bottom-4 right-4">
+              <Link
+                href={`/events/register?event=${encodeURIComponent(
+                  "High-Performance Web Applications"
+                )}&category=${encodeURIComponent("Tech Talks")}`}
+                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
+              >
+                Register
+              </Link>
             </div>
           </div>
         </div>
