@@ -194,6 +194,8 @@ const Section3: React.FC = () => {
             </div>
           </section>
 
+
+
           {/* Sponsorships Section */}
           <section className="text-center">
             <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
@@ -252,6 +254,8 @@ const Section3: React.FC = () => {
             </div>
           </section>
         </div>
+        
+
       </div>
     </>
   );
