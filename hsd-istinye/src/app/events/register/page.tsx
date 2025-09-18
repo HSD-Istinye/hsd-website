@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../../../supabase/client"; 
 
@@ -11,20 +11,20 @@ export default function RegisterPage({
   searchParams?: { event?: string; category?: string };
 }) {
   const router = useRouter();
-  const eventName = (searchParams && searchParams.event) || "Workshop";
-  const category = (searchParams && searchParams.category) || "Registration";
+
+  const unwrappedSearchParams = (React as any).use
+    ? (React as any).use(searchParams)
+    : searchParams;
+
+  const eventName = (unwrappedSearchParams && unwrappedSearchParams.event) || "Workshop";
+  const category = (unwrappedSearchParams && unwrappedSearchParams.category) || "Registration";
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
-  const [notes, setNotes] = useState("");
+  const [specifics, setSpecifics] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
-
-  const [specifics, setSpecifics] = useState(eventName);
-  useEffect(() => {
-    setSpecifics((searchParams && searchParams.event) || "Workshop");
-  }, [searchParams?.event]);
 
   function validate() {
     if (!name.trim() || !surname.trim() || !email.trim()) {
@@ -48,7 +48,7 @@ export default function RegisterPage({
       name,
       surname,
       mail: email,
-      specifics: { event: specifics, notes },
+      specifics,
     };
 
     try {
@@ -80,7 +80,7 @@ export default function RegisterPage({
             <div className="bg-white rounded-xl shadow p-10 text-center h-full">
               <div className="text-lg font-bold text-gray-900 mb-2">{category}</div>
               <h2 className="text-2xl font-semibold text-gray-900">Teşekkürler!</h2>
-              <p className="mt-3 text-gray-600">Etkinliğe kaydınız alınmıştır: <strong>{specifics}</strong>.</p>
+              <p className="mt-3 text-gray-600">Etkinliğe kaydınız alınmıştır: <strong>{eventName}</strong>.</p>
               <p className="mt-4 text-sm text-gray-500">Atölyelere yönlendiriliyorsunuz...</p>
               <div className="mt-6">
                 <button onClick={() => router.push("/events/workshops")} className="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -104,7 +104,7 @@ export default function RegisterPage({
 
             <h1 className="text-3xl font-extrabold text-gray-900 flex items-center gap-3">
               <span className="text-3xl">📝</span>
-              Register: {specifics}
+              Register: {eventName}
             </h1>
             <p className="text-gray-600 mt-2">Lütfen aşağıdaki bilgileri eksiksiz doldurun.</p>
 
@@ -127,13 +127,8 @@ export default function RegisterPage({
               </label>
 
               <label className="block">
-                <div className="text-sm text-gray-600 mb-1">Etkinlik (detay)</div>
-                <input value={specifics} readOnly className="w-full bg-gray-50 border-gray-200 rounded-lg px-4 py-3 text-gray-700" aria-label="Specifics" />
-              </label>
-
-              <label className="block">
                 <div className="text-sm text-gray-600 mb-1">Notlar / Ek Bilgi</div>
-                <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 h-36 overflow-y-auto resize-none focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Herhangi bir özel gereksinim veya not..." aria-label="Notes" />
+                <textarea value={specifics} onChange={(e) => setSpecifics(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 h-36 overflow-y-auto resize-none focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Herhangi bir özel gereksinim veya not..." aria-label="Notes" />
               </label>
 
               {error && <div className="text-sm text-red-500">{error}</div>}
@@ -143,7 +138,7 @@ export default function RegisterPage({
                 <button type="button" onClick={() => router.back()} className="text-sm px-4 py-2 rounded-full border border-gray-200 text-gray-700">İptal</button>
               </div>
 
-              <div className="text-xs text-gray-400 mt-2">Etkinlik: {specifics}</div>
+              <div className="text-xs text-gray-400 mt-2">Etkinlik: {eventName}</div>
             </form>
           </div>
         </div>

@@ -58,7 +58,7 @@ export default function WorkshopsPage() {
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
                     "React Fundamentals"
-                  )}`}
+                  )}&category=${encodeURIComponent("Coding Workshops")}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -96,7 +96,7 @@ export default function WorkshopsPage() {
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
                     "Python for Data Science"
-                  )}`}
+                  )}&category=${encodeURIComponent("Coding Workshops")}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -134,7 +134,7 @@ export default function WorkshopsPage() {
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
                     "Node.js & Express"
-                  )}`}
+                  )}&category=${encodeURIComponent("Coding Workshops")}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -172,7 +172,7 @@ export default function WorkshopsPage() {
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
                     "Flutter Mobile Development"
-                  )}`}
+                  )}&category=${encodeURIComponent("Coding Workshops")}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -210,7 +210,7 @@ export default function WorkshopsPage() {
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
                     "UI/UX Design Principles"
-                  )}`}
+                  )}&category=${encodeURIComponent("Coding Workshops")}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -248,7 +248,7 @@ export default function WorkshopsPage() {
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
                     "AWS Cloud Fundamentals"
-                  )}`}
+                  )}&category=${encodeURIComponent("Coding Workshops")}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
