@@ -1,58 +1,71 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { createClient } from "../../../../supabase/client"; 
+import React, { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { createClient } from "../../../../supabase/client";
 
-
-export default function RegisterPage({
-  searchParams,
-}: {
-  searchParams?: { event?: string; category?: string };
-}) {
+function RegisterComponent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const eventId = searchParams.get("eventId");
 
-  const unwrappedSearchParams = (React as any).use
-    ? (React as any).use(searchParams)
-    : searchParams;
-
-  const eventName = (unwrappedSearchParams && unwrappedSearchParams.event) || "Workshop";
-  const category = (unwrappedSearchParams && unwrappedSearchParams.category) || "Registration";
+  const [eventName, setEventName] = useState("Event");
+  const [questions, setQuestions] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
-  const [specifics, setSpecifics] = useState("");
+  const [specifics, setSpecifics] = useState(""); 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  function validate() {
-    if (!name.trim() || !surname.trim() || !email.trim()) {
-      setError("Lütfen ad, soyad ve e-posta bilgilerini doldurun.");
-      return false;
+  useEffect(() => {
+    if (!eventId) {
+      setError("Event ID is missing.");
+      setIsLoading(false);
+      return;
     }
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setError("Lütfen geçerli bir e-posta adresi giriniz.");
-      return false;
-    }
-    setError("");
-    return true;
-  }
+
+    const fetchEventDetails = async () => {
+      setIsLoading(true);
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from("events")
+        .select("title, questions")
+        .eq("id", eventId)
+        .single();
+
+      if (error || !data) {
+        console.error("Error fetching event details:", error);
+        setError("Could not load event details.");
+      } else {
+        setEventName(data.title);
+        setQuestions(data.questions ? data.questions.split('\n') : []);
+      }
+      setIsLoading(false);
+    };
+
+    fetchEventDetails();
+  }, [eventId]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!validate()) return;
-
+    if (!name.trim() || !surname.trim() || !email.trim()) {
+        setError("Please fill in your name, surname, and email.");
+        return;
+    }
     setError("");
+
     const payload = {
       name,
       surname,
       mail: email,
-      specifics,
+      specifics, 
+      eventId: Number(eventId),
     };
 
     try {
-      // Use the API route which should use the server-side Supabase client.
       const res = await fetch("/api/registrations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -61,88 +74,85 @@ export default function RegisterPage({
 
       if (!res.ok) {
         const errBody = await res.json().catch(() => ({}));
-        throw new Error(errBody?.error || "Kayıt yapılamadı");
+        throw new Error(errBody?.error || "Registration failed");
       }
 
       setSubmitted(true);
-      setTimeout(() => router.push("/events/workshops"), 2000);
     } catch (err: any) {
-      setError(err?.message || "Gönderim başarısız");
+      setError(err?.message || "Submission failed");
     }
   }
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
-        {/* ...existing header... */}
-        <main className="flex-1 px-6 py-20">
-          <div className="max-w-4xl mx-auto h-full">
-            <div className="bg-white rounded-xl shadow p-10 text-center h-full">
-              <div className="text-lg font-bold text-gray-900 mb-2">{category}</div>
-              <h2 className="text-2xl font-semibold text-gray-900">Teşekkürler!</h2>
-              <p className="mt-3 text-gray-600">Etkinliğe kaydınız alınmıştır: <strong>{eventName}</strong>.</p>
-              <p className="mt-4 text-sm text-gray-500">Atölyelere yönlendiriliyorsunuz...</p>
-              <div className="mt-6">
-                <button onClick={() => router.push("/events/workshops")} className="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium">
-                  Atölyelere Dön
-                </button>
-              </div>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+            <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-10 text-center">
+                <h2 className="text-2xl font-semibold text-gray-900">Thank You!</h2>
+                <p className="mt-3 text-gray-600">Your registration for <strong>{eventName}</strong> has been received.</p>
+                <div className="mt-6">
+                    <button onClick={() => router.back()} className="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90">
+                    ← Go Back
+                    </button>
+                </div>
             </div>
-          </div>
-        </main>
-      </div>
+        </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* ...existing header... */}
-      <main className="flex-1 px-6 py-12">
-        <div className="max-w-4xl mx-auto h-full">
-          <div className="bg-white rounded-xl shadow p-10 h-full">
-            <div className="text-xl font-bold text-gray-900 mb-2">{category}</div>
+      <main className="flex-1 px-6 py-12 flex items-center justify-center">
+        <div className="max-w-2xl w-full bg-white rounded-xl shadow-lg p-10">
+            {isLoading ? (
+                <p>Loading event details...</p>
+            ) : error && !questions.length ? (
+                <p className="text-red-500">{error}</p>
+            ) : (
+                <>
+                <h1 className="text-3xl font-extrabold text-gray-900">📝 Register: {eventName}</h1>
+                <p className="text-gray-600 mt-2">Please fill out the information below.</p>
 
-            <h1 className="text-3xl font-extrabold text-gray-900 flex items-center gap-3">
-              <span className="text-3xl">📝</span>
-              Register: {eventName}
-            </h1>
-            <p className="text-gray-600 mt-2">Lütfen aşağıdaki bilgileri eksiksiz doldurun.</p>
+                <form onSubmit={onSubmit} className="mt-6 space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label className="block"><div className="text-sm text-gray-600 mb-1">Name</div><input value={name} onChange={(e) => setName(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Your Name" /></label>
+                    <label className="block"><div className="text-sm text-gray-600 mb-1">Surname</div><input value={surname} onChange={(e) => setSurname(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Your Surname" /></label>
+                    </div>
+                    <label className="block"><div className="text-sm text-gray-600 mb-1">Email</div><input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="email@example.com" type="email" /></label>
+                    
+                    {questions.length > 0 && (
+                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <h3 className="font-semibold text-gray-700 mb-2">Questions:</h3>
+                            {questions.map((q, index) => (
+                                <p key={index} className="text-sm text-gray-600">{q}</p>
+                            ))}
+                        </div>
+                    )}
 
-            <form onSubmit={onSubmit} className="mt-6 space-y-4">
-              {/* ...existing form fields... */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <label className="block">
-                  <div className="text-sm text-gray-600 mb-1">Ad</div>
-                  <input value={name} onChange={(e) => setName(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Adınız" />
-                </label>
-                <label className="block">
-                  <div className="text-sm text-gray-600 mb-1">Soyad</div>
-                  <input value={surname} onChange={(e) => setSurname(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Soyadınız" />
-                </label>
-              </div>
+                    <label className="block">
+                        <div className="text-sm text-gray-600 mb-1">Your Answers / Additional Notes</div>
+                        <textarea value={specifics} onChange={(e) => setSpecifics(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 h-36 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Please provide your answers to the questions above here..." />
+                    </label>
 
-              <label className="block">
-                <div className="text-sm text-gray-600 mb-1">E-posta</div>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="email@ornek.com" type="email" />
-              </label>
+                    {error && <div className="text-sm text-red-500">{error}</div>}
 
-              <label className="block">
-                <div className="text-sm text-gray-600 mb-1">Notlar / Ek Bilgi</div>
-                <textarea value={specifics} onChange={(e) => setSpecifics(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 h-36 overflow-y-auto resize-none focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Herhangi bir özel gereksinim veya not..." aria-label="Notes" />
-              </label>
-
-              {error && <div className="text-sm text-red-500">{error}</div>}
-
-              <div className="flex items-center justify-between gap-4">
-                <button type="submit" className="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90">Kaydı Gönder</button>
-                <button type="button" onClick={() => router.back()} className="text-sm px-4 py-2 rounded-full border border-gray-200 text-gray-700">İptal</button>
-              </div>
-
-              <div className="text-xs text-gray-400 mt-2">Etkinlik: {eventName}</div>
-            </form>
-          </div>
+                    <div className="flex items-center justify-between gap-4 pt-2">
+                    <button type="submit" className="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:opacity-90">Submit Registration</button>
+                    <button type="button" onClick={() => router.back()} className="text-sm px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50">Cancel</button>
+                    </div>
+                </form>
+                </>
+            )}
         </div>
       </main>
     </div>
   );
 }
+
+export default function RegisterPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <RegisterComponent />
+        </Suspense>
+    )
+}
+

@@ -1,6 +1,32 @@
 import Link from "next/link";
+import { createClient } from "../../../../supabase/server";
 
-export default function WorkshopsPage() {
+type EventContent = {
+  id: number;
+  title: string;
+  description: string;
+};
+
+async function getAllEventContent() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("events")
+    .select("id, title, description");
+
+  if (error) {
+    console.error("Error fetching event content:", error);
+    return [];
+  }
+  return data;
+}
+
+export default async function WorkshopsPage() {
+  const allEvents = await getAllEventContent();
+
+  const getContent = (title: string): Partial<EventContent> => {
+    return allEvents.find(e => e.title === title) || { id: 0, title: title, description: "Loading description..." };
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Üst bar */}
@@ -29,7 +55,7 @@ export default function WorkshopsPage() {
         </header>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Card 1 */}
+          {/* Card 1: React Fundamentals */}
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600 text-2xl">
@@ -39,12 +65,12 @@ export default function WorkshopsPage() {
             <div className="flex-1">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">React Fundamentals</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{getContent("React Fundamentals").title}</h3>
                   <div className="text-sm text-gray-500">10 February 2025</div>
                 </div>
                 <div className="text-sm font-semibold text-green-600">67 Participants</div>
               </div>
-              <p className="text-sm text-gray-600 mt-3">Complete introduction to React.js including components, hooks, and state management.</p>
+              <p className="text-sm text-gray-600 mt-3">{getContent("React Fundamentals").description}</p>
               <div className="mt-4">
                 <ul className="text-sm text-gray-500 list-disc ml-5 space-y-1">
                   <li>Component lifecycle and hooks</li>
@@ -52,13 +78,9 @@ export default function WorkshopsPage() {
                   <li>Building a complete todo application</li>
                 </ul>
               </div>
-
-              {/*  Register butonu  */}
               <div className="absolute bottom-4 right-4">
                 <Link
-                  href={`/events/register?event=${encodeURIComponent(
-                    "React Fundamentals"
-                  )}&category=${encodeURIComponent("Coding Workshops")}`}
+                  href={`/events/register?eventId=${getContent("React Fundamentals").id}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -67,7 +89,7 @@ export default function WorkshopsPage() {
             </div>
           </article>
 
-          {/* Card 2 */}
+          {/* Card 2: Python for Data Science */}
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-green-50 flex items-center justify-center text-green-600 text-2xl">
@@ -77,12 +99,12 @@ export default function WorkshopsPage() {
             <div className="flex-1">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Python for Data Science</h3>
-                  <div className="text-sm text-gray-500">22 February 2025</div>
+                    <h3 className="text-lg font-semibold text-gray-900">{getContent("Python for Data Science").title}</h3>
+                    <div className="text-sm text-gray-500">22 February 2025</div>
                 </div>
                 <div className="text-sm font-semibold text-green-600">89 Participants</div>
               </div>
-              <p className="text-sm text-gray-600 mt-3">Data analysis and visualization using Python, pandas, and matplotlib.</p>
+              <p className="text-sm text-gray-600 mt-3">{getContent("Python for Data Science").description}</p>
               <div className="mt-4">
                 <ul className="text-sm text-gray-500 list-disc ml-5 space-y-1">
                   <li>Data manipulation with pandas</li>
@@ -90,13 +112,9 @@ export default function WorkshopsPage() {
                   <li>Machine learning basics with scikit-learn</li>
                 </ul>
               </div>
-
-              {/* Register butonu  */}
               <div className="absolute bottom-4 right-4">
-                <Link
-                  href={`/events/register?event=${encodeURIComponent(
-                    "Python for Data Science"
-                  )}&category=${encodeURIComponent("Coding Workshops")}`}
+                 <Link
+                  href={`/events/register?eventId=${getContent("Python for Data Science").id}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -105,7 +123,7 @@ export default function WorkshopsPage() {
             </div>
           </article>
 
-          {/* Card 3 */}
+          {/* Card 3: Node.js & Express */}
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 text-2xl">
@@ -115,12 +133,12 @@ export default function WorkshopsPage() {
             <div className="flex-1">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Node.js & Express</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{getContent("Node.js & Express").title}</h3>
                   <div className="text-sm text-gray-500">8 March 2025</div>
                 </div>
                 <div className="text-sm font-semibold text-purple-600">54 Participants</div>
               </div>
-              <p className="text-sm text-gray-600 mt-3">Backend development with Node.js, Express, and MongoDB integration.</p>
+              <p className="text-sm text-gray-600 mt-3">{getContent("Node.js & Express").description}</p>
               <div className="mt-4">
                 <ul className="text-sm text-gray-500 list-disc ml-5 space-y-1">
                   <li>RESTful API development</li>
@@ -128,13 +146,9 @@ export default function WorkshopsPage() {
                   <li>Authentication and middleware</li>
                 </ul>
               </div>
-
-              {/* Register butonu */}
               <div className="absolute bottom-4 right-4">
                 <Link
-                  href={`/events/register?event=${encodeURIComponent(
-                    "Node.js & Express"
-                  )}&category=${encodeURIComponent("Coding Workshops")}`}
+                  href={`/events/register?eventId=${getContent("Node.js & Express").id}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -143,7 +157,7 @@ export default function WorkshopsPage() {
             </div>
           </article>
 
-          {/* Card 4 */}
+          {/* Card 4: Flutter Mobile Development */}
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-yellow-50 flex items-center justify-center text-yellow-600 text-2xl">
@@ -153,12 +167,12 @@ export default function WorkshopsPage() {
             <div className="flex-1">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Flutter Mobile Development</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{getContent("Flutter Mobile Development").title}</h3>
                   <div className="text-sm text-gray-500">6 April 2025</div>
                 </div>
                 <div className="text-sm font-semibold text-amber-600">73 Participants</div>
               </div>
-              <p className="text-sm text-gray-600 mt-3">Cross-platform mobile app development using Flutter and Dart.</p>
+              <p className="text-sm text-gray-600 mt-3">{getContent("Flutter Mobile Development").description}</p>
               <div className="mt-4">
                 <ul className="text-sm text-gray-500 list-disc ml-5 space-y-1">
                   <li>Dart programming fundamentals</li>
@@ -166,13 +180,9 @@ export default function WorkshopsPage() {
                   <li>Building and deploying apps</li>
                 </ul>
               </div>
-
-              {/* Register butonu */}
               <div className="absolute bottom-4 right-4">
                 <Link
-                  href={`/events/register?event=${encodeURIComponent(
-                    "Flutter Mobile Development"
-                  )}&category=${encodeURIComponent("Coding Workshops")}`}
+                  href={`/events/register?eventId=${getContent("Flutter Mobile Development").id}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -181,7 +191,7 @@ export default function WorkshopsPage() {
             </div>
           </article>
 
-          {/* Card 5 */}
+          {/* Card 5: UI/UX Design Principles */}
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-pink-50 flex items-center justify-center text-pink-600 text-2xl">
@@ -191,12 +201,12 @@ export default function WorkshopsPage() {
             <div className="flex-1">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">UI/UX Design Principles</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{getContent("UI/UX Design Principles").title}</h3>
                   <div className="text-sm text-gray-500">5 May 2025</div>
                 </div>
                 <div className="text-sm font-semibold text-red-500">92 Participants</div>
               </div>
-              <p className="text-sm text-gray-600 mt-3">Design thinking and user experience principles for developers.</p>
+              <p className="text-sm text-gray-600 mt-3">{getContent("UI/UX Design Principles").description}</p>
               <div className="mt-4">
                 <ul className="text-sm text-gray-500 list-disc ml-5 space-y-1">
                   <li>Design thinking methodology</li>
@@ -204,13 +214,9 @@ export default function WorkshopsPage() {
                   <li>User research and testing</li>
                 </ul>
               </div>
-
-              {/* Register butonu */}
               <div className="absolute bottom-4 right-4">
                 <Link
-                  href={`/events/register?event=${encodeURIComponent(
-                    "UI/UX Design Principles"
-                  )}&category=${encodeURIComponent("Coding Workshops")}`}
+                  href={`/events/register?eventId=${getContent("UI/UX Design Principles").id}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -219,7 +225,7 @@ export default function WorkshopsPage() {
             </div>
           </article>
 
-          {/* Card 6 */}
+          {/* Card 6: AWS Cloud Fundamentals */}
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 text-2xl">
@@ -229,12 +235,12 @@ export default function WorkshopsPage() {
             <div className="flex-1">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">AWS Cloud Fundamentals</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{getContent("AWS Cloud Fundamentals").title}</h3>
                   <div className="text-sm text-gray-500">3 October 2025</div>
                 </div>
                 <div className="text-sm font-semibold text-sky-600">45 Participants</div>
               </div>
-              <p className="text-sm text-gray-600 mt-3">Introduction to cloud computing and AWS services for developers.</p>
+              <p className="text-sm text-gray-600 mt-3">{getContent("AWS Cloud Fundamentals").description}</p>
               <div className="mt-4">
                 <ul className="text-sm text-gray-500 list-disc ml-5 space-y-1">
                   <li>EC2 and S3 fundamentals</li>
@@ -242,13 +248,9 @@ export default function WorkshopsPage() {
                   <li>Deployment strategies</li>
                 </ul>
               </div>
-
-              {/* Register butonu */}
               <div className="absolute bottom-4 right-4">
                 <Link
-                  href={`/events/register?event=${encodeURIComponent(
-                    "AWS Cloud Fundamentals"
-                  )}&category=${encodeURIComponent("Coding Workshops")}`}
+                  href={`/events/register?eventId=${getContent("AWS Cloud Fundamentals").id}`}
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90"
                 >
                   Register
@@ -261,3 +263,4 @@ export default function WorkshopsPage() {
     </div>
   );
 }
+
