@@ -19,9 +19,12 @@ interface Event {
   created_at: string;
 }
 
-type CalendarDay =
-  | { key: string; type: 'day'; day: number; date: Date; events: Event[] }
-  | { key: string; type: 'empty' };
+type CalendarDay = { 
+    key: string; 
+    day: number; 
+    date: Date; 
+    events: Event[];
+};
 
 // --- Utility Functions ---
 const formatDate = (date: Date | null | undefined): string => {
@@ -73,7 +76,7 @@ const sampleEvents: Event[] = [
 
 // --- Main Component ---
 const Section3: React.FC = () => {
-  const [currentDate, setCurrentDate] = useState(new Date(2025, 9, 24));
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 29)); // Start on Monday Sep 29, 2025
   const [events, setEvents] = useState<Event[]>(sampleEvents.map(e => ({...e, date: e.created_at.split('T')[0] })));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -183,8 +186,17 @@ const eventCards = [
 
 
   // --- Calendar Logic ---
-  const handlePrevMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
-  const handleNextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+  const handlePrevWeek = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() - 7);
+    setCurrentDate(newDate);
+  };
+  const handleNextWeek = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() + 7);
+    setCurrentDate(newDate);
+  };
+  
 
   const performActionWithPassword = (action: () => void) => {
     // In a real app, you'd show a modal here.
@@ -249,28 +261,37 @@ const eventCards = [
     });
   };
 
-  const { monthName, year, daysInMonth, firstDayOfMonth } = useMemo(() => {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    const firstDay = new Date(year, month, 1).getDay();
-    return {
-      monthName: currentDate.toLocaleString('default', { month: 'long' }),
-      year,
-      daysInMonth: new Date(year, month + 1, 0).getDate(),
-      firstDayOfMonth: firstDay === 0 ? 6 : firstDay - 1, 
-    };
-  }, [currentDate]);
+  const { weekDays, weekRange } = useMemo(() => {
+    const startOfWeek = new Date(currentDate);
+    const dayOfWeek = startOfWeek.getDay(); // 0 (Sun) to 6 (Sat)
+    const diff = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Adjust to make Monday the start (0)
+    startOfWeek.setDate(startOfWeek.getDate() - diff);
+    startOfWeek.setHours(0, 0, 0, 0);
 
-  const calendarDays = useMemo((): CalendarDay[] => {
-    const days: CalendarDay[] = Array.from({ length: firstDayOfMonth }, (_, i) => ({ key: `empty-${i}`, type: 'empty' }));
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(year, currentDate.getMonth(), day);
-      const dateStr = formatDate(date);
-      const dayEvents = events.filter(e => e.date === dateStr);
-      days.push({ key: `day-${day}`, type: 'day', day, date, events: dayEvents });
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+    const days: CalendarDay[] = [];
+    for (let i = 0; i < 7; i++) {
+        const date = new Date(startOfWeek);
+        date.setDate(date.getDate() + i);
+        const dateStr = formatDate(date);
+        const dayEvents = events.filter(e => e.date === dateStr);
+        days.push({ 
+            key: `day-${i}`, 
+            day: date.getDate(), 
+            date, 
+            events: dayEvents 
+        });
     }
-    return days;
-  }, [firstDayOfMonth, daysInMonth, year, currentDate, events]);
+    
+    const rangeFormatter = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
+    const yearFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric' });
+    
+    const range = `${rangeFormatter.format(startOfWeek)} - ${rangeFormatter.format(endOfWeek)}, ${yearFormatter.format(startOfWeek)}`;
+
+    return { weekDays: days, weekRange: range };
+  }, [currentDate, events]);
 
 
   return (
@@ -338,14 +359,13 @@ const eventCards = [
                  <div className="max-w-4xl mx-auto">
               <div className="mt-12 bg-white rounded-xl shadow-lg p-4 text-left">
                 <div className="flex justify-between items-center mb-4">
-                  <button onClick={handlePrevMonth} className="p-2 rounded-full hover:bg-gray-100"><ChevronLeft size={20} className="text-gray-600" /></button>
-                  <h3 className="text-xl font-bold text-gray-800">{monthName} {year}</h3>
-                  <button onClick={handleNextMonth} className="p-2 rounded-full hover:bg-gray-100"><ChevronRight size={20} className="text-gray-600" /></button>
+                  <button onClick={handlePrevWeek} className="p-2 rounded-full hover:bg-gray-100"><ChevronLeft size={20} className="text-gray-600" /></button>
+                  <h3 className="text-xl font-bold text-gray-800">{weekRange}</h3>
+                  <button onClick={handleNextWeek} className="p-2 rounded-full hover:bg-gray-100"><ChevronRight size={20} className="text-gray-600" /></button>
                 </div>
                 <div className="grid grid-cols-7 gap-1">
                   {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (<div key={day} className="text-center font-semibold text-gray-500 text-xs py-2">{day}</div>))}
-                  {calendarDays.map(dayInfo => {
-                    if (dayInfo.type === 'empty') return <div key={dayInfo.key} className="border rounded-md border-transparent"></div>;
+                  {weekDays.map(dayInfo => {
                     const { key, day, date, events: dayEvents } = dayInfo;
                     const isToday = formatDate(new Date()) === formatDate(date);
                     return (
