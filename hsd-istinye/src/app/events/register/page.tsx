@@ -11,12 +11,12 @@ function RegisterComponent() {
 
   const [eventName, setEventName] = useState("Event");
   const [questions, setQuestions] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
-  const [specifics, setSpecifics] = useState(""); 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
@@ -40,14 +40,29 @@ function RegisterComponent() {
         console.error("Error fetching event details:", error);
         setError("Could not load event details.");
       } else {
+        const rawQuestions = data.questions || "";
+        
+
+        const fetchedQuestions = rawQuestions
+          .split('\n') 
+          .flatMap(line => line.split(/\s*(?=\d+\.\s)/)) 
+          .filter(q => q.trim() !== '');
+        
         setEventName(data.title);
-        setQuestions(data.questions ? data.questions.split('\n') : []);
+        setQuestions(fetchedQuestions);
+        setAnswers(new Array(fetchedQuestions.length).fill(""));
       }
       setIsLoading(false);
     };
 
     fetchEventDetails();
   }, [eventId]);
+  
+  const handleAnswerChange = (index: number, value: string) => {
+    const newAnswers = [...answers];
+    newAnswers[index] = value;
+    setAnswers(newAnswers);
+  };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -56,12 +71,16 @@ function RegisterComponent() {
         return;
     }
     setError("");
+    
+    const formattedSpecifics = questions.map((q, index) => 
+        `Question: ${q}\nAnswer: ${answers[index] || "Not answered."}`
+    ).join('\n\n');
 
     const payload = {
       name,
       surname,
       mail: email,
-      specifics, 
+      specifics: formattedSpecifics,
       eventId: Number(eventId),
     };
 
@@ -114,30 +133,44 @@ function RegisterComponent() {
 
                 <form onSubmit={onSubmit} className="mt-6 space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <label className="block"><div className="text-sm text-gray-600 mb-1">Name</div><input value={name} onChange={(e) => setName(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Your Name" /></label>
-                    <label className="block"><div className="text-sm text-gray-600 mb-1">Surname</div><input value={surname} onChange={(e) => setSurname(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Your Surname" /></label>
+                        <label className="block">
+                            <div className="text-sm text-gray-600 mb-1">Name</div>
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Your Name" />
+                        </label>
+                        <label className="block">
+                            <div className="text-sm text-gray-600 mb-1">Surname</div>
+                            <input value={surname} onChange={(e) => setSurname(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Your Surname" />
+                        </label>
                     </div>
-                    <label className="block"><div className="text-sm text-gray-600 mb-1">Email</div><input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="email@example.com" type="email" /></label>
+                    <label className="block">
+                        <div className="text-sm text-gray-600 mb-1">Email</div>
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="email@example.com" type="email" />
+                    </label>
                     
                     {questions.length > 0 && (
-                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-semibold text-gray-700 mb-2">Questions:</h3>
+                        <div className="space-y-5 pt-2">
+                            <h3 className="font-semibold text-gray-700">Event Questions:</h3>
                             {questions.map((q, index) => (
-                                <p key={index} className="text-sm text-gray-600">{q}</p>
+                                <label key={index} className="block">
+                                    <div className="text-sm text-gray-700 mb-2">
+                                        <span className="font-medium">Q:</span> {q}
+                                    </div>
+                                    <textarea 
+                                        value={answers[index]} 
+                                        onChange={(e) => handleAnswerChange(index, e.target.value)}
+                                        className="w-full border-gray-200 rounded-lg px-4 py-3 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-200" 
+                                        placeholder="Your answer..." 
+                                    />
+                                </label>
                             ))}
                         </div>
                     )}
 
-                    <label className="block">
-                        <div className="text-sm text-gray-600 mb-1">Your Answers / Additional Notes</div>
-                        <textarea value={specifics} onChange={(e) => setSpecifics(e.target.value)} className="w-full border-gray-200 rounded-lg px-4 py-3 h-36 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Please provide your answers to the questions above here..." />
-                    </label>
-
                     {error && <div className="text-sm text-red-500">{error}</div>}
 
                     <div className="flex items-center justify-between gap-4 pt-2">
-                    <button type="submit" className="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:opacity-90">Submit Registration</button>
-                    <button type="button" onClick={() => router.back()} className="text-sm px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50">Cancel</button>
+                        <button type="submit" className="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:opacity-90">Submit Registration</button>
+                        <button type="button" onClick={() => router.back()} className="text-sm px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50">Cancel</button>
                     </div>
                 </form>
                 </>
@@ -155,4 +188,3 @@ export default function RegisterPage() {
         </Suspense>
     )
 }
-
