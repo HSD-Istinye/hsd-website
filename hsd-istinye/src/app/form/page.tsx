@@ -2,27 +2,27 @@
 import React, { useState } from 'react';
 
 interface FormData {
-  ad: string;
-  soyad: string;
-  email: string;
-  telefon: string;
-  pozisyon: string;
-  departman: string;
+  name: string;
+  surname: string;
+  mail: string;
+  phone_number: string;
+  description: string;
 }
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    ad: '',
-    soyad: '',
-    email: '',
-    telefon: '',
-    pozisyon: '',
-    departman: ''
+    name: '',
+    surname: '',
+    mail: '',
+    phone_number: '',
+    description: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -33,19 +33,57 @@ const Form: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
     
-    // Simüle edilmiş API çağrısı
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    console.log('Form verileri:', formData);
-    alert('Form başarıyla gönderildi!');
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/sponsorship', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ad: formData.name,
+          soyad: formData.surname,
+          email: formData.mail,
+          telefon: formData.phone_number,
+          aciklama: formData.description
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.ok) {
+        setSubmitStatus('success');
+        // Formu sıfırla
+        setFormData({
+          name: '',
+          surname: '',
+          mail: '',
+          phone_number: '',
+          description: ''
+        });
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(result.error === 'VALIDATION_ERROR' 
+          ? 'Lütfen tüm alanları doğru şekilde doldurun.' 
+          : 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.'
+        );
+        console.error('API hatası:', result.error);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Bir ağ hatası oluştu. Lütfen internet bağlantınızı kontrol edin.');
+      console.error('Ağ hatası:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-        {/* Kurumsal Bilgi Bölümü */}
+      <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+        {/* Kurumsal Bilgi Bölümü - Genişletilmiş */}
         <div className="md:w-2/5 bg-gradient-to-br from-blue-800 to-indigo-900 text-white p-8 flex flex-col justify-between">
           <div>
             <div className="flex items-center mb-8">
@@ -55,9 +93,9 @@ const Form: React.FC = () => {
               <h1 className="text-2xl font-bold">HSD İstinye</h1>
             </div>
             
-            <h2 className="text-3xl font-bold mb-4">Kişi Bilgi Formu</h2>
+            <h2 className="text-3xl font-bold mb-4">Sponsorluk Başvuru Formu</h2>
             <p className="text-blue-200 mb-6">
-              Kurumsal iletişim ve kayıt sistemimize hoş geldiniz. Lütfen iletişim bilgilerinizi eksiksiz doldurunuz.
+              Kurumsal sponsorluk başvuruları için iletişim bilgilerinizi eksiksiz doldurunuz.
             </p>
             
             <div className="space-y-3">
@@ -91,22 +129,29 @@ const Form: React.FC = () => {
         
         {/* Form Bölümü */}
         <div className="md:w-3/5 p-8">
-          <div className="mb-6">
-            <h3 className="text-2xl font-bold text-gray-800">Kişisel Bilgiler</h3>
-            <p className="text-gray-500">Lütfen aşağıdaki bilgileri eksiksiz doldurunuz</p>
-          </div>
+          {submitStatus === 'success' && (
+            <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
+              Başvurunuz başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.
+            </div>
+          )}
+          
+          {submitStatus === 'error' && (
+            <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+              {errorMessage}
+            </div>
+          )}
           
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="ad" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                   Adınız <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  id="ad"
-                  name="ad"
-                  value={formData.ad}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                   placeholder="Adınızı giriniz"
@@ -115,14 +160,14 @@ const Form: React.FC = () => {
               </div>
               
               <div>
-                <label htmlFor="soyad" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="surname" className="block text-sm font-medium text-gray-700 mb-1">
                   Soyadınız <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  id="soyad"
-                  name="soyad"
-                  value={formData.soyad}
+                  id="surname"
+                  name="surname"
+                  value={formData.surname}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                   placeholder="Soyadınızı giriniz"
@@ -132,14 +177,14 @@ const Form: React.FC = () => {
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="mail" className="block text-sm font-medium text-gray-700 mb-1">
                 E-posta Adresiniz <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                id="mail"
+                name="mail"
+                value={formData.mail}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 placeholder="ornek@email.com"
@@ -148,14 +193,14 @@ const Form: React.FC = () => {
             </div>
             
             <div>
-              <label htmlFor="telefon" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 mb-1">
                 Telefon Numaranız <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
-                id="telefon"
-                name="telefon"
-                value={formData.telefon}
+                id="phone_number"
+                name="phone_number"
+                value={formData.phone_number}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 placeholder="05XX XXX XX XX"
@@ -163,41 +208,19 @@ const Form: React.FC = () => {
               />
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="departman" className="block text-sm font-medium text-gray-700 mb-1">
-                  Departman
-                </label>
-                <select
-                  id="departman"
-                  name="departman"
-                  value={formData.departman}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                >
-                  <option value="">Departman seçiniz</option>
-                  <option value="IT">Bilişim Teknolojileri</option>
-                  <option value="HR">İnsan Kaynakları</option>
-                  <option value="Finance">Finans</option>
-                  <option value="Sales">Satış</option>
-                  <option value="Marketing">Pazarlama</option>
-                </select>
-              </div>
-              
-              <div>
-                <label htmlFor="pozisyon" className="block text-sm font-medium text-gray-700 mb-1">
-                  Pozisyon
-                </label>
-                <input
-                  type="text"
-                  id="pozisyon"
-                  name="pozisyon"
-                  value={formData.pozisyon}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                  placeholder="Pozisyonunuz"
-                />
-              </div>
+            <div>
+              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                Açıklama
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                rows={4}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="Sponsorluk önerinizi veya eklemek istediğiniz açıklamaları yazın..."
+              />
             </div>
             
             <div className="flex items-center">
@@ -232,7 +255,7 @@ const Form: React.FC = () => {
           
           <div className="mt-8 pt-6 border-t border-gray-200 text-center">
             <p className="text-xs text-gray-500">
-              © 2023 HSD İstinye. Tüm hakları saklıdır. 
+              © 2025 HSD İstinye. Tüm hakları saklıdır. 
               <a href="#" className="text-blue-600 hover:text-blue-800 ml-2">Gizlilik Politikası</a>
             </p>
           </div>
