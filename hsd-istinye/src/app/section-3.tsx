@@ -92,7 +92,7 @@ const Section3: React.FC = () => {
     {
       key: "hackathons-2",
       title: "Hackathons",
-      icon: <Trophy size={36} />,
+      icon: <Trophy size={37} />,
       headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
       description:
         "24-hour coding competitions where teams build innovative solutions to real-world problems.",
