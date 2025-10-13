@@ -40,7 +40,7 @@ export default function Section4() {
   return (
     <>
       {/* SECTION - Ana iletişim alanı: arka plan ve genel padding */}
-      <section className="bg-[#0b1220] text-gray-200 py-16">
+      <section id="contact-us" className="bg-[#0b1220] text-gray-200 py-16">
         <div className="max-w-6xl mx-auto px-6">
           {/* HEADER - Başlık ve küçük açıklama */}
           <div className="text-center mb-10">
