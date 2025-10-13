@@ -6,6 +6,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Code, Zap, Trophy, Laptop, Mic, Users, Eye, Handshake, ArrowRight } from "lucide-react";
 
+
+
+
+
+
 interface SponsorLogoProps {
   name: string;
 }

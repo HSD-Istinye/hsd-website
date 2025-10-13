@@ -10,8 +10,8 @@ const HuaweiStudentDevelopers = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="max-w-6xl w-full bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
+      <div className="max-w-screen-2xl w-full mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
         
         <div className="bg-white px-8 py-6 border-b border-gray-100">
           <div className="flex justify-between items-center">
