@@ -159,8 +159,8 @@ export default function Section4() {
                     </svg>
                   </div>
                   <div>
-                    <strong className="block">Demo Contact Form</strong>
-                    <span className="text-sm block">This is a sample form for demonstration purposes.</span>
+                    <strong className="block">Contact Form</strong>
+                    <span className="text-sm block">You can contact us by filling this form.</span>
                   </div>
                 </div>
 
