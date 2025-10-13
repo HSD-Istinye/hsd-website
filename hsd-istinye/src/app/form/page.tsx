@@ -43,11 +43,11 @@ const Form: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ad: formData.name,
-          soyad: formData.surname,
-          email: formData.mail,
-          telefon: formData.phone_number,
-          aciklama: formData.description
+          name: formData.name,
+          surname: formData.surname,
+          mail: formData.mail,
+          phone_number: formData.phone_number,
+          description: formData.description
         }),
       });
 
