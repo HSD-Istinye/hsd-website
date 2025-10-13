@@ -61,7 +61,7 @@ const Form: React.FC = () => {
       }
 
       // Try to parse JSON, but handle unexpected shapes
-      let result: any;
+      let result ;
       try {
         result = await response.json();
       } catch (jsonErr) {
