@@ -243,14 +243,15 @@ const Section3: React.FC = () => {
 
             {/* Call to Action */}
             <div className="mt-12">
-              <button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto">
+              <Link href="/form" className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto w-fit">
                 <span role="img" aria-label="rocket" className="mr-2">🚀</span>
                 Become a Sponsor
                 <ArrowRight className="ml-3" size={20} />
-              </button>
+              </Link>
               <p className="text-gray-500 mt-4 text-sm">Join leading companies supporting innovation</p>
             </div>
           </section>
+
         </div>
       </div>
     </>
