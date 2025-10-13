@@ -1,10 +1,40 @@
 "use client";
 import React from "react";
+import { createClient } from "../../supabase/client";
 
 export default function Section4() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const formRef = React.useRef<HTMLFormElement>(null);
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Message sent (demo)");
+
+    const form = formRef.current;
+    if (!form) return;
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const subject = formData.get("subject") as string;
+    const message = formData.get("message") as string;
+
+    const supabase = createClient();
+
+    const { error } = await supabase.from("messages").insert([
+      {
+        full_name: name,
+        email: email,
+        category: subject,
+        text: message,
+      },
+    ]);
+
+    if (error) {
+      console.error("❌ Error inserting message:", error.message);
+      alert("Failed to send message. Please try again.");
+    } else {
+      alert("✅ Message sent successfully!");
+      form.reset();  
+    }
   };
 
   return (
@@ -42,7 +72,7 @@ export default function Section4() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">Email</div>
-                      <div className="text-white">hsdistinye@gmail.com</div>
+                      <div className="text-white">hsd@istinye.edu.tr</div>
                     </div>
                   </li>
 
@@ -63,25 +93,15 @@ export default function Section4() {
               </div>
 
               {/* SOSYAL - Takip butonları
-                  - YouTube, Instagram, LinkedIn linkleri var.
+                  - X, Instagram, LinkedIn linkleri var.
                   - Her buton new tab açıyor (target + rel) ve onClick ile window.open güvenliği sağlanıyor. */}
               <div>
                 <h4 className="text-white font-medium mb-3">Follow Us</h4>
                 <div className="flex gap-3">
-                  <a
-                    className="bg-[#6b21a8] p-3 rounded-md inline-flex items-center justify-center cursor-pointer"
-                    aria-label="YouTube"
-                    href="https://www.youtube.com/c/HuaweiDeveloperGroupsT%C3%BCrkiye"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="YouTube"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.open("https://www.youtube.com/c/HuaweiDeveloperGroupsT%C3%BCrkiye", "_blank", "noopener,noreferrer");
-                    }}
-                  >
+                  {/* X button (placeholder link).*/}
+                  <a className="bg-[#6b21a8] p-3 rounded-md inline-flex items-center justify-center" aria-label="X" href="#" title="X">
                     <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 0.5 5.8a3 3 0 0 0 2.1 2.12C4.4 20.5 12 20.5 12 20.5s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.12C24 16 24 12 24 12s0-4-0.5-5.8zM9.8 15.5V8.5l6 3.5-6 3.5z" />
+                      <path d="M23 3a1 1 0 0 0-1.3-.1L13 9.4 8.4 5 3.7 9.7A1 1 0 0 0 5 12.1l4.7-4.7L13 13l8.7-8.7A1 1 0 0 0 23 3z" />
                     </svg>
                   </a>
 
@@ -151,7 +171,7 @@ export default function Section4() {
                 </div>
 
                 {/* FORM */}
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form  ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="sr-only">Name</label>
                     <input required name="name" placeholder="Your name" className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400" />
@@ -164,7 +184,7 @@ export default function Section4() {
 
                   <div>
                     <label className="sr-only">Subject</label>
-                    <select name="subject" className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    <select  name="subject" className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400">
                       <option>General Inquiry</option>
                       <option>Partnership</option>
                       <option>Events</option>
@@ -173,7 +193,7 @@ export default function Section4() {
 
                   <div>
                     <label className="sr-only">Message</label>
-                    <textarea name="message" placeholder="Tell us about your inquiry..." rows={5} className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
+                    <textarea required name="message" placeholder="Tell us about your inquiry..." rows={5} className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
                   </div>
 
                   <div>
@@ -193,7 +213,7 @@ export default function Section4() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="font-semibold text-lg md:text-xl">Huawei Student Developers - Istinye University</div>
           <div className="text-sm md:text-base text-gray-300 mt-2">
-            © 2025 HSD Istinye. Empowering the next generation of developers.
+            © 2024 HSD Istinye. Empowering the next generation of developers.
           </div>
         </div>
       </footer>
