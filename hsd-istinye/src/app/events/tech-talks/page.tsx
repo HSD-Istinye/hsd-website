@@ -32,7 +32,7 @@ export default function TechTalksPage() {
         </header>
 
         <div className="space-y-6">
-          {/* Card 1 */}
+          {/* Card 1
           <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
             <div className="absolute right-4 top-4">
               <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-purple-500 to-indigo-600 shadow-sm ring-1 ring-white/20">234 Attendees</div>
@@ -52,7 +52,7 @@ export default function TechTalksPage() {
               </div>
             </div>
 
-            {/* Register butonu */}
+            <!-- Register butonu -->
             <div className="absolute bottom-4 right-4">
               <Link
                 href={`/events/register?event=${encodeURIComponent(
@@ -64,8 +64,9 @@ export default function TechTalksPage() {
               </Link>
             </div>
           </div>
+          */}
 
-          {/* Card 2 */}
+          {/* Card 2
           <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
             <div className="absolute right-4 top-4">
               <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-green-400 to-emerald-600 shadow-sm ring-1 ring-white/20">187 Attendees</div>
@@ -85,7 +86,7 @@ export default function TechTalksPage() {
               </div>
             </div>
 
-            {/* Register butonu */}
+            <!-- Register butonu -->
             <div className="absolute bottom-4 right-4">
               <Link
                 href={`/events/register?event=${encodeURIComponent(
@@ -97,8 +98,9 @@ export default function TechTalksPage() {
               </Link>
             </div>
           </div>
+          */}
 
-          {/* Card 3 */}
+          {/* Card 3
           <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
             <div className="absolute right-4 top-4">
               <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-pink-500 to-rose-500 shadow-sm ring-1 ring-white/20">156 Attendees</div>
@@ -118,7 +120,7 @@ export default function TechTalksPage() {
               </div>
             </div>
 
-            {/* Register butonu */}
+            <!-- Register butonu -->
             <div className="absolute bottom-4 right-4">
               <Link
                 href={`/events/register?event=${encodeURIComponent(
@@ -130,8 +132,9 @@ export default function TechTalksPage() {
               </Link>
             </div>
           </div>
+          */}
 
-          {/* Card 4 */}
+          {/* Card 4
           <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
             <div className="absolute right-4 top-4">
               <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-orange-400 to-red-500 shadow-sm ring-1 ring-white/20">206 Attendees</div>
@@ -151,7 +154,7 @@ export default function TechTalksPage() {
               </div>
             </div>
 
-            {/*  Register butonu  */}
+            <!-- Register butonu -->
             <div className="absolute bottom-4 right-4">
               <Link
                 href={`/events/register?event=${encodeURIComponent(
@@ -163,8 +166,9 @@ export default function TechTalksPage() {
               </Link>
             </div>
           </div>
+          */}
 
-          {/* Card 5 */}
+          {/* Card 5
           <div className="relative bg-white rounded-xl shadow p-6 flex items-center justify-between gap-6">
             <div className="absolute right-4 top-4">
               <div className="text-xs px-3 py-1 rounded-full text-white bg-gradient-to-br from-sky-500 to-blue-600 shadow-sm ring-1 ring-white/20">167 Attendees</div>
@@ -184,7 +188,7 @@ export default function TechTalksPage() {
               </div>
             </div>
 
-            {/* Register butonu  */}
+            <!-- Register butonu -->
             <div className="absolute bottom-4 right-4">
               <Link
                 href={`/events/register?event=${encodeURIComponent(
@@ -196,6 +200,7 @@ export default function TechTalksPage() {
               </Link>
             </div>
           </div>
+          */}
         </div>
       </main>
     </div>

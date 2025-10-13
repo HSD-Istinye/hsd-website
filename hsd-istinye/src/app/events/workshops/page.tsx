@@ -29,7 +29,7 @@ export default function WorkshopsPage() {
         </header>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Card 1 */}
+          {/* Card 1
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600 text-2xl">
@@ -53,7 +53,7 @@ export default function WorkshopsPage() {
                 </ul>
               </div>
 
-              {/*  Register butonu  */}
+              <!-- Register butonu -->
               <div className="absolute bottom-4 right-4">
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
@@ -66,8 +66,9 @@ export default function WorkshopsPage() {
               </div>
             </div>
           </article>
+          */}
 
-          {/* Card 2 */}
+          {/* Card 2
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-green-50 flex items-center justify-center text-green-600 text-2xl">
@@ -91,7 +92,7 @@ export default function WorkshopsPage() {
                 </ul>
               </div>
 
-              {/* Register butonu  */}
+              <!-- Register butonu -->
               <div className="absolute bottom-4 right-4">
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
@@ -104,8 +105,9 @@ export default function WorkshopsPage() {
               </div>
             </div>
           </article>
+          */}
 
-          {/* Card 3 */}
+          {/* Card 3
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 text-2xl">
@@ -129,7 +131,7 @@ export default function WorkshopsPage() {
                 </ul>
               </div>
 
-              {/* Register butonu */}
+              <!-- Register butonu -->
               <div className="absolute bottom-4 right-4">
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
@@ -142,8 +144,9 @@ export default function WorkshopsPage() {
               </div>
             </div>
           </article>
+          */}
 
-          {/* Card 4 */}
+          {/* Card 4
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-yellow-50 flex items-center justify-center text-yellow-600 text-2xl">
@@ -167,7 +170,7 @@ export default function WorkshopsPage() {
                 </ul>
               </div>
 
-              {/* Register butonu */}
+              <!-- Register butonu -->
               <div className="absolute bottom-4 right-4">
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
@@ -180,8 +183,9 @@ export default function WorkshopsPage() {
               </div>
             </div>
           </article>
+          */}
 
-          {/* Card 5 */}
+          {/* Card 5
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-pink-50 flex items-center justify-center text-pink-600 text-2xl">
@@ -205,7 +209,7 @@ export default function WorkshopsPage() {
                 </ul>
               </div>
 
-              {/* Register butonu */}
+              <!-- Register butonu -->
               <div className="absolute bottom-4 right-4">
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
@@ -218,8 +222,9 @@ export default function WorkshopsPage() {
               </div>
             </div>
           </article>
+          */}
 
-          {/* Card 6 */}
+          {/* Card 6
           <article className="relative pb-12 bg-white rounded-xl shadow p-6 flex gap-4 items-start">
             <div className="flex-shrink-0">
               <div className="h-12 w-12 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 text-2xl">
@@ -243,7 +248,7 @@ export default function WorkshopsPage() {
                 </ul>
               </div>
 
-              {/* Register butonu */}
+              <!-- Register butonu -->
               <div className="absolute bottom-4 right-4">
                 <Link
                   href={`/events/register?event=${encodeURIComponent(
@@ -256,6 +261,7 @@ export default function WorkshopsPage() {
               </div>
             </div>
           </article>
+          */}
         </div>
       </main>
     </div>
