@@ -51,11 +51,29 @@ const Form: React.FC = () => {
         }),
       });
 
-      const result = await response.json();
-      
-      if (result.ok) {
+      // Check HTTP status first
+      if (!response.ok) {
+        const text = await response.text().catch(() => '');
+        console.error('HTTP error', response.status, text);
+        setSubmitStatus('error');
+        setErrorMessage('Sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.');
+        return;
+      }
+
+      // Try to parse JSON, but handle unexpected shapes
+      let result: any;
+      try {
+        result = await response.json();
+      } catch (jsonErr) {
+        console.error('JSON parse error:', jsonErr);
+        setSubmitStatus('error');
+        setErrorMessage('Sunucudan beklenmeyen cevap alındı.');
+        return;
+      }
+
+      // Expect API to return something like { ok: true } or { ok: false, error: '...' }
+      if (result && result.ok) {
         setSubmitStatus('success');
-        // Formu sıfırla
         setFormData({
           name: '',
           surname: '',
@@ -64,12 +82,11 @@ const Form: React.FC = () => {
           description: ''
         });
       } else {
+        console.error('API responded with error:', result);
         setSubmitStatus('error');
-        setErrorMessage(result.error === 'VALIDATION_ERROR' 
-          ? 'Lütfen tüm alanları doğru şekilde doldurun.' 
-          : 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.'
-        );
-        console.error('API hatası:', result.error);
+        setErrorMessage(result?.error === 'VALIDATION_ERROR'
+          ? 'Lütfen tüm alanları doğru şekilde doldurun.'
+          : 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       }
     } catch (error) {
       setSubmitStatus('error');
