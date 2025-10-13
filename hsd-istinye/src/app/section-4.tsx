@@ -72,7 +72,7 @@ export default function Section4() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">Email</div>
-                      <div className="text-white">hsd@istinye.edu.tr</div>
+                      <div className="text-white">hsdistinye@gmail.com</div>
                     </div>
                   </li>
 
@@ -98,12 +98,6 @@ export default function Section4() {
               <div>
                 <h4 className="text-white font-medium mb-3">Follow Us</h4>
                 <div className="flex gap-3">
-                  {/* X button (placeholder link).*/}
-                  <a className="bg-[#6b21a8] p-3 rounded-md inline-flex items-center justify-center" aria-label="X" href="#" title="X">
-                    <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M23 3a1 1 0 0 0-1.3-.1L13 9.4 8.4 5 3.7 9.7A1 1 0 0 0 5 12.1l4.7-4.7L13 13l8.7-8.7A1 1 0 0 0 23 3z" />
-                    </svg>
-                  </a>
 
                   {/* Instagram */}
                   <a
@@ -213,7 +207,7 @@ export default function Section4() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="font-semibold text-lg md:text-xl">Huawei Student Developers - Istinye University</div>
           <div className="text-sm md:text-base text-gray-300 mt-2">
-            © 2024 HSD Istinye. Empowering the next generation of developers.
+            Empowering the next generation of developers.
           </div>
         </div>
       </footer>

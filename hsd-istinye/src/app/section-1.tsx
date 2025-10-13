@@ -129,11 +129,11 @@ const HuaweiStudentDevelopers = () => {
               {/* Kenarlık ve gölge yok */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 text-center">
-                  <div className="text-4xl font-bold mb-2 text-purple-600">150+</div>
+                  <div className="text-4xl font-bold mb-2 text-purple-600">30+</div>
                   <div className="text-gray-600">Active Members</div>
                 </div>
                 <div className="p-6 text-center">
-                  <div className="text-4xl font-bold mb-2 text-purple-600">25+</div>
+                  <div className="text-4xl font-bold mb-2 text-purple-600">10+</div>
                   <div className="text-gray-600">Events Hosted</div>
                 </div>
               </div>

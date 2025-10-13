@@ -123,7 +123,7 @@ const Section3: React.FC = () => {
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
   const HARDCODED_PASSWORD = "hsd";
 
-  const sponsors = ["Meta", "Apple", "Huawei", "Microsoft", "Google", "Amazon", "Netflix"];
+  const sponsors = ["Huawei", "Huawei", "Huawei", "Huawei", "Huawei", "Huawei", "Huawei"];
   const scrollWidth = `calc(-${sponsors.length * 10}rem)`;
 
   const eventCards = [
@@ -176,7 +176,7 @@ const Section3: React.FC = () => {
       title: "Hackathons",
       icon: <Trophy size={36} />,
       headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
-      description: "24-hour coding competitions where teams build innovative solutions to real-world problems.",
+      description: "Coding competitions where teams build innovative solutions to real-world problems.",
       participants: "250+ Participants",
       meta: "Monthly • Weekends • 5 Events Completed",
       href: "/events/hackathons",

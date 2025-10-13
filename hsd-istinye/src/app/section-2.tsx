@@ -16,16 +16,6 @@ const members = [
       linkedin: "https://www.linkedin.com/in/ata-sesli?trk=blended-typeahead",
     },
     {
-    name: "Ebrar Kama",
-    role: "Vice Ambassador & Social Media Team Leader",
-    study: "Molecular Biology and Genetic Student",
-    image: "/avatars/ebrar-kama.jpeg",
-    initial: "E",
-    gradient: "from-pink-500 to-purple-500",
-    color: "text-green-600",
-    linkedin: "https://www.linkedin.com/in/ebrar-kama-3b8226348/?lipi=urn%3Ali%3Apage%3Ap_mwlite_people_connections%3BX%2BWTbxpZQ%2FSFN1X7T5ps%2FQ%3D%3D",
-    }, 
-    {
     name: "Muhammed Said Tosun",
     role: "Event Team Leader",
     study: "Computer Engineering Student",
@@ -49,14 +39,15 @@ const members = [
       "https://www.linkedin.com/in/doruk-artan/?lipi=urn%3Ali%3Apage%3Ap_mwlite_my_network%3Bk3V3jLOyQNq9omp0ZxsjwQ%3D%3D",
   },
   {
-    name: "Tuana Kabakçı",
-    role: "Event Team Member",
-    study: "Psychology Student",
-    image: "/avatars/tuana-kabakci.jpeg",
-    initial: "T",
-    gradient: "from-orange-500 to-red-500",
-    color: "text-orange-600",
-    linkedin: "https://www.linkedin.com/in/tuana-kabakci-8a6799364/",
+    name: "Aylin Ataç",
+    role: "Social Media Team Leader",
+    study: "Radio and Television Student",
+    image: "/avatars/aylin-atac.jpeg",
+    initial: "A",
+    gradient: "from-pink-500 to-purple-500",
+    color: "text-pink-600",
+    linkedin:
+      "https://www.linkedin.com/in/aylin-atac-96ba03322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   {
     name: "Sena Zeytin",
@@ -133,17 +124,6 @@ const members = [
     color: "text-purple-600",
     github: "https://github.com/esra-bingol",
     linkedin: "https://www.linkedin.com/in/esra-bingol?trk=blended-typeahead"
-  },
-  {
-    name: "Aylin Ataç",
-    role: "Social Media Team Member",
-    study: "Radio and Television Student",
-    image: "/avatars/aylin-atac.jpeg",
-    initial: "A",
-    gradient: "from-pink-500 to-purple-500",
-    color: "text-pink-600",
-    linkedin:
-      "https://www.linkedin.com/in/aylin-atac-96ba03322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   {
     name: "Ece Ayhan",
