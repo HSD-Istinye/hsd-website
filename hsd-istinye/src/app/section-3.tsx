@@ -1,51 +1,129 @@
+// ...existing code...
 "use client";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Code, Zap, Trophy, Laptop, Mic, Users, Eye, Handshake, ArrowRight } from "lucide-react";
+import {
+  Trophy,
+  Laptop,
+  Mic,
+  Users,
+  Eye,
+  Handshake,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  PlusCircle,
+} from "lucide-react";
 
+// ...existing code...
+type EventColor = "purple" | "green" | "orange" | "blue" | "red";
 
-
-
-
-
-interface SponsorLogoProps {
-  name: string;
+interface Event {
+  id: number;
+  date?: string;
+  title: string;
+  description: string;
+  color: EventColor;
+  questions?: string | null;
+  created_at: string;
 }
 
-const SponsorLogo: React.FC<SponsorLogoProps> = ({ name }) => (
+type CalendarDay = {
+  key: string;
+  day: number;
+  date: Date;
+  events: Event[];
+};
+
+// ...existing code...
+const formatDate = (date: Date | null | undefined): string => {
+  if (!date) return "";
+  const d = new Date(date);
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().split("T")[0];
+};
+
+const SponsorLogo: React.FC<{ name: string }> = ({ name }) => (
   <div className="flex-shrink-0 flex items-center justify-center h-16 w-32 bg-gray-100 rounded-lg mx-4">
     <span className="text-gray-500 font-semibold">{name}</span>
   </div>
 );
 
-const NextArrow: React.FC<any> = ({ onClick }) => (
+const NextArrow: React.FC<{ onClick?: React.MouseEventHandler<HTMLButtonElement> }> = ({ onClick }) => (
   <button
     type="button"
     aria-label="Next"
     onClick={onClick}
-    className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-50"
+    className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow-md hover:bg-gray-100 transition-colors"
   >
-    <ArrowRight size={20} />
+    <ChevronRight size={20} />
   </button>
 );
 
-const PrevArrow: React.FC<any> = ({ onClick }) => (
+const PrevArrow: React.FC<{ onClick?: React.MouseEventHandler<HTMLButtonElement> }> = ({ onClick }) => (
   <button
     type="button"
     aria-label="Previous"
     onClick={onClick}
-    className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-50"
+    className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white p-2 shadow-md hover:bg-gray-100 transition-colors"
   >
-    <ArrowRight size={20} className="rotate-180" />
+    <ChevronLeft size={20} />
   </button>
 );
 
-const Section3: React.FC = () => {
-  const sponsors: string[] = ["Meta", "Apple", "Huawei", "Microsoft", "Google", "Amazon", "Netflix"];
+// ...existing code...
+const sampleEvents: Event[] = [
+  {
+    id: 1001,
+    created_at: "2025-09-06T10:00:00Z",
+    title: "Intro to React",
+    description: "Learn the fundamentals of React.",
+    color: "purple",
+    questions: "What are hooks?",
+  },
+  {
+    id: 1002,
+    created_at: "2025-09-13T12:00:00Z",
+    title: "Advanced CSS",
+    description: "Deep dive into Grid and Flexbox.",
+    color: "green",
+    questions: "How does CSS Grid work?",
+  },
+  {
+    id: 1003,
+    created_at: "2025-09-13T14:00:00Z",
+    title: "State Management Talk",
+    description: "Exploring different state management libraries.",
+    color: "orange",
+    questions: "Redux or Zustand?",
+  },
+  {
+    id: 1004,
+    created_at: "2025-09-20T09:00:00Z",
+    title: "UI/UX Design Principles",
+    description: "A workshop on creating intuitive user interfaces.",
+    color: "blue",
+    questions: "What is user-centered design?",
+  },
+];
 
+// ...existing code...
+const Section3: React.FC = () => {
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 29));
+  const [events, setEvents] = useState<Event[]>(
+    sampleEvents.map((event) => ({ ...event, date: event.created_at.split("T")[0] }))
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [eventTitle, setEventTitle] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [editingEvent, setEditingEvent] = useState<Event | null>(null);
+  const HARDCODED_PASSWORD = "hsd";
+
+  const sponsors = ["Meta", "Apple", "Huawei", "Microsoft", "Google", "Amazon", "Netflix"];
   const scrollWidth = `calc(-${sponsors.length * 10}rem)`;
 
   const eventCards = [
@@ -54,7 +132,7 @@ const Section3: React.FC = () => {
       title: "Coding Workshops",
       icon: <Laptop size={36} />,
       headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
-      description:"Hands-on workshops covering the latest technologies, frameworks, and development practices.",
+      description: "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
       participants: "250+ Participants",
       meta: "Weekly • Saturdays • 8 Workshops Held",
       href: "/events/workshops",
@@ -65,8 +143,7 @@ const Section3: React.FC = () => {
       title: "Hackathons",
       icon: <Trophy size={36} />,
       headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
-      description:
-        "24-hour coding competitions where teams build innovative solutions to real-world problems.",
+      description: "24-hour coding competitions where teams build innovative solutions to real-world problems.",
       participants: "250+ Participants",
       meta: "Monthly • Weekends • 5 Events Completed",
       href: "/events/hackathons",
@@ -88,7 +165,7 @@ const Section3: React.FC = () => {
       title: "Coding Workshops",
       icon: <Laptop size={36} />,
       headerClasses: "bg-gradient-to-br from-blue-400 to-indigo-600",
-      description:"Hands-on workshops covering the latest technologies, frameworks, and development practices.",
+      description: "Hands-on workshops covering the latest technologies, frameworks, and development practices.",
       participants: "250+ Participants",
       meta: "Weekly • Saturdays • 8 Workshops Held",
       href: "/events/workshops",
@@ -99,8 +176,7 @@ const Section3: React.FC = () => {
       title: "Hackathons",
       icon: <Trophy size={36} />,
       headerClasses: "bg-gradient-to-br from-pink-500 to-purple-500",
-      description:
-        "24-hour coding competitions where teams build innovative solutions to real-world problems.",
+      description: "24-hour coding competitions where teams build innovative solutions to real-world problems.",
       participants: "250+ Participants",
       meta: "Monthly • Weekends • 5 Events Completed",
       href: "/events/hackathons",
@@ -138,6 +214,132 @@ const Section3: React.FC = () => {
     ],
   };
 
+  const colorClasses: Record<EventColor, string> = {
+    purple: "bg-purple-100 text-purple-800 border-l-4 border-purple-500",
+    green: "bg-green-100 text-green-800 border-l-4 border-green-500",
+    orange: "bg-orange-100 text-orange-800 border-l-4 border-orange-500",
+    blue: "bg-blue-100 text-blue-800 border-l-4 border-blue-500",
+    red: "bg-red-100 text-red-800 border-l-4 border-red-500",
+  };
+
+  const handlePrevWeek = () => {
+    setCurrentDate((prev) => {
+      const newDate = new Date(prev);
+      newDate.setDate(newDate.getDate() - 7);
+      return newDate;
+    });
+  };
+
+  const handleNextWeek = () => {
+    setCurrentDate((prev) => {
+      const newDate = new Date(prev);
+      newDate.setDate(newDate.getDate() + 7);
+      return newDate;
+    });
+  };
+
+  const performActionWithPassword = (action: () => void) => {
+    const password = prompt("Please enter the admin password:");
+    if (password === HARDCODED_PASSWORD) {
+      action();
+    } else {
+      alert("Incorrect password.");
+    }
+  };
+
+  const openAddModal = (date: Date) => {
+    performActionWithPassword(() => {
+      setSelectedDate(date);
+      setEditingEvent(null);
+      setEventTitle("");
+      setEventDescription("");
+      setIsModalOpen(true);
+    });
+  };
+
+  const openEditModal = (event: Event) => {
+    performActionWithPassword(() => {
+      setEditingEvent(event);
+      const date = new Date(event.created_at);
+      date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+      setSelectedDate(date);
+      setEventTitle(event.title);
+      setEventDescription(event.description);
+      setIsModalOpen(true);
+    });
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditingEvent(null);
+  };
+
+  const handleSaveEvent = () => {
+    if (!eventTitle || !selectedDate) return;
+
+    if (editingEvent) {
+      setEvents((prevEvents) =>
+        prevEvents.map((event) =>
+          event.id === editingEvent.id
+            ? { ...event, title: eventTitle, description: eventDescription, date: formatDate(selectedDate) }
+            : event
+        )
+      );
+    } else {
+      const newEvent: Event = {
+        id: Date.now(),
+        title: eventTitle,
+        description: eventDescription,
+        created_at: selectedDate.toISOString(),
+        date: formatDate(selectedDate),
+        color: (["purple", "green", "orange", "blue", "red"] as EventColor[])[Math.floor(Math.random() * 5)],
+      };
+      setEvents((prevEvents) => [...prevEvents, newEvent]);
+    }
+
+    closeModal();
+  };
+
+  const handleDeleteEvent = (eventId: number) => {
+    performActionWithPassword(() => {
+      setEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId));
+      closeModal();
+    });
+  };
+
+  const { weekDays, weekRange } = useMemo(() => {
+    const startOfWeek = new Date(currentDate);
+    const dayOfWeek = startOfWeek.getDay();
+    const diff = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    startOfWeek.setDate(startOfWeek.getDate() - diff);
+    startOfWeek.setHours(0, 0, 0, 0);
+
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+    const days: CalendarDay[] = [];
+    for (let i = 0; i < 7; i += 1) {
+      const date = new Date(startOfWeek);
+      date.setDate(date.getDate() + i);
+      const dateStr = formatDate(date);
+      const dayEvents = events.filter((event) => event.date === dateStr);
+      days.push({
+        key: `day-${i}`,
+        day: date.getDate(),
+        date,
+        events: dayEvents,
+      });
+    }
+
+    const rangeFormatter = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" });
+    const yearFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric" });
+    const range = `${rangeFormatter.format(startOfWeek)} - ${rangeFormatter.format(endOfWeek)}, ${yearFormatter.format(
+      startOfWeek
+    )}`;
+
+    return { weekDays: days, weekRange: range };
+  }, [currentDate, events]);
+
   return (
     <>
       <style>{`
@@ -152,21 +354,112 @@ const Section3: React.FC = () => {
           animation-play-state: paused;
         }
         .event-slider .slick-track { display: flex !important; align-items: stretch; }
-        .event-slider .slick-slide { height: auto; display: flex; align-items: stretch; }
+        .event-slider .slick-slide { height: auto; display: flex !important; align-items: stretch; }
         .event-slider .slick-slide > div { width: 100%; display: flex; flex-direction: column; }
-
       `}</style>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">{editingEvent ? "Edit Event" : "Add Event"}</h2>
+            {selectedDate && <p className="text-sm text-gray-500 mb-4">Date: {formatDate(selectedDate)}</p>}
+            <input
+              type="text"
+              value={eventTitle}
+              onChange={(event) => setEventTitle(event.target.value)}
+              placeholder="Event Title"
+              className="w-full p-2 border rounded mb-4"
+            />
+            <textarea
+              value={eventDescription}
+              onChange={(event) => setEventDescription(event.target.value)}
+              placeholder="Event Description"
+              className="w-full p-2 border rounded mb-4"
+              rows={4}
+            />
+            <div className="flex justify-end gap-2">
+              {editingEvent && (
+                <button
+                  onClick={() => handleDeleteEvent(editingEvent.id)}
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                >
+                  Delete
+                </button>
+              )}
+              <button onClick={closeModal} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                Cancel
+              </button>
+              <button onClick={handleSaveEvent} className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Our Events Section */}
           <section className="text-center mb-20">
             <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600">
               Join us for exciting workshops, hackathons, and networking events designed to enhance your coding skills
             </p>
 
-            {/* Carousel replacing the original grid but keeping cards content */}
+            <div className="max-w-4xl mx-auto">
+              <div className="mt-12 bg-white rounded-xl shadow-lg p-4 text-left">
+                <div className="flex justify-between items-center mb-4">
+                  <button onClick={handlePrevWeek} className="p-2 rounded-full hover:bg-gray-100">
+                    <ChevronLeft size={20} className="text-gray-600" />
+                  </button>
+                  <h3 className="text-xl font-bold text-gray-800">{weekRange}</h3>
+                  <button onClick={handleNextWeek} className="p-2 rounded-full hover:bg-gray-100">
+                    <ChevronRight size={20} className="text-gray-600" />
+                  </button>
+                </div>
+                <div className="grid grid-cols-7 gap-1">
+                  {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
+                    <div key={day} className="text-center font-semibold text-gray-500 text-xs py-2">
+                      {day}
+                    </div>
+                  ))}
+                  {weekDays.map(({ key, day, date, events: dayEvents }) => {
+                    const isToday = formatDate(new Date()) === formatDate(date);
+                    return (
+                      <div
+                        key={key}
+                        className="relative border border-gray-200 rounded-md p-1 min-h-[8rem] flex flex-col group bg-gray-50 hover:bg-white transition-colors duration-200"
+                      >
+                        <div
+                          className={`text-xs font-semibold self-start mb-1 ${
+                            isToday ? "bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center" : "text-gray-700"
+                          }`}
+                        >
+                          {day}
+                        </div>
+                        <div className="flex-grow overflow-y-auto space-y-1 text-xs">
+                          {dayEvents.map((event) => (
+                            <div
+                              key={event.id}
+                              onClick={() => openEditModal(event)}
+                              className={`p-1.5 rounded cursor-pointer ${colorClasses[event.color] || colorClasses.blue}`}
+                            >
+                              <p className="font-semibold truncate">{event.title}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <button
+                          onClick={() => openAddModal(date)}
+                          className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 text-purple-500 hover:text-purple-700 transition-opacity"
+                        >
+                          <PlusCircle size={18} />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
             <div className="mt-12 relative">
               <Slider {...sliderSettings} className="event-slider">
                 {eventCards.map((card) => (
@@ -199,14 +492,12 @@ const Section3: React.FC = () => {
             </div>
           </section>
 
-          {/* Sponsorships Section */}
           <section className="text-center">
             <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12">
               Partner with us to support the next generation of developers and gain access to top talent
             </p>
 
-            {/* Our Sponsors*/}
             <div className="mb-16">
               <h3 className="text-xl font-bold text-gray-700 mb-8">Our Sponsors</h3>
               <div className="relative w-full overflow-hidden group">
@@ -218,7 +509,6 @@ const Section3: React.FC = () => {
               </div>
             </div>
 
-            {/* Why Sponsor Us? */}
             <div className="mb-12">
               <h3 className="text-xl font-bold text-gray-700 mb-10">Why Sponsor Us?</h3>
               <div className="grid md:grid-cols-3 gap-10 text-left">
@@ -246,17 +536,20 @@ const Section3: React.FC = () => {
               </div>
             </div>
 
-            {/* Call to Action */}
             <div className="mt-12">
-              <Link href="/form" className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto w-fit">
-                <span role="img" aria-label="rocket" className="mr-2">🚀</span>
+              <Link
+                href="/form"
+                className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto w-fit"
+              >
+                <span role="img" aria-label="rocket" className="mr-2">
+                  🚀
+                </span>
                 Become a Sponsor
                 <ArrowRight className="ml-3" size={20} />
               </Link>
               <p className="text-gray-500 mt-4 text-sm">Join leading companies supporting innovation</p>
             </div>
           </section>
-
         </div>
       </div>
     </>
@@ -264,5 +557,3 @@ const Section3: React.FC = () => {
 };
 
 export default Section3;
-
-
