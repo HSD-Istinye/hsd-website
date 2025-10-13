@@ -9,8 +9,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: 'INVALID_JSON' }, { status: 400 })
     }
 
-    const { ad, soyad, email, telefon, aciklama } = body
-    if (!ad || !soyad || !email || !telefon) {
+    const name: string | undefined = (body.ad ?? body.name ?? body.firstName)?.toString().trim() || undefined
+    const surname: string | undefined = (body.soyad ?? body.soyadi ?? body.surname ?? body.lastName)?.toString().trim() || undefined
+    const mail: string | undefined = (body.email ?? body.mail)?.toString().trim() || undefined
+    const phone_number: string | undefined = (body.telefon ?? body.phone ?? body.phone_number ?? body.phoneNumber)?.toString().trim() || undefined
+    const description: string | null = ((body.aciklama ?? body.description)?.toString().trim() || '') || null
+
+    if (!name || !surname || !mail || !phone_number) {
       return NextResponse.json({ ok: false, error: 'VALIDATION_ERROR' }, { status: 400 })
     }
 
@@ -35,11 +40,11 @@ export async function POST(req: Request) {
     })
 
     const { data, error } = await supabase.from('sponsorships').insert({
-      ad,
-      soyad,
-      email,
-      telefon,
-      aciklama: aciklama || null,
+      name,
+      surname,
+      mail,
+      phone_number,
+      description: description || null,
     }).select()
 
     if (error) {
