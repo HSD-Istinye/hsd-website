@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "dev": "npm run dev --prefix hsd-istinye",
+    "build": "npm run build --prefix hsd-istinye",
+    "start": "npm run start --prefix hsd-istinye",
+    "lint": "npm run lint --prefix hsd-istinye"
+  },
   "dependencies": {
     "react-slick": "^0.31.0",
     "slick-carousel": "^1.8.1",

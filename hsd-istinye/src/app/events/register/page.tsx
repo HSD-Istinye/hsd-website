@@ -45,8 +45,8 @@ function RegisterComponent() {
 
         const fetchedQuestions = rawQuestions
           .split('\n') 
-          .flatMap(line => line.split(/\s*(?=\d+\.\s)/)) 
-          .filter(q => q.trim() !== '');
+          .flatMap((line: string) => line.split(/\s*(?=\d+\.\s)/)) 
+          .filter((q: string) => q.trim() !== '');
         
         setEventName(data.title);
         setQuestions(fetchedQuestions);
