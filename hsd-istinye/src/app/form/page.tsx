@@ -138,8 +138,7 @@ const Form: React.FC = () => {
           
           <div className="mt-8 pt-6 border-t border-blue-700">
             <h3 className="font-semibold mb-2">İletişim Bilgilerimiz</h3>
-            <p className="text-blue-200 text-sm">İstinye, İstanbul</p>
-            <p className="text-blue-200 text-sm"></p>
+            <p className="text-blue-200 text-sm">İstinye Üniversitesi, İstanbul</p>
             <p className="text-blue-200 text-sm">hsdistinye@gmail.com</p>
           </div>
         </div>
