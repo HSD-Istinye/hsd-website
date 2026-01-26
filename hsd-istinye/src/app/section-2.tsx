@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const members = [
@@ -7,6 +8,7 @@ const members = [
       name: "Ata Sesli",
       role: "Ambassador",
       study: "Computer Engineering Student",
+      image: "/avatars/ata-sesli.png",
       initial: "A",
       gradient: "from-green-500 to-teal-500",
       color: "text-green-600",
@@ -14,18 +16,10 @@ const members = [
       linkedin: "https://www.linkedin.com/in/ata-sesli?trk=blended-typeahead",
     },
     {
-    name: "Ebrar Kama",
-    role: "Vice Ambassador & Social Media Team Leader",
-    study: "Molecular Biology and Genetic Student",
-    initial: "E",
-    gradient: "from-pink-500 to-purple-500",
-    color: "text-green-600",
-    linkedin: "https://www.linkedin.com/in/ebrar-kama-3b8226348/?lipi=urn%3Ali%3Apage%3Ap_mwlite_people_connections%3BX%2BWTbxpZQ%2FSFN1X7T5ps%2FQ%3D%3D",
-    }, 
-    {
     name: "Muhammed Said Tosun",
     role: "Event Team Leader",
     study: "Computer Engineering Student",
+    image: "/avatars/muhammedsaidtosun.jpeg",
     initial: "M",
     gradient: "from-orange-500 to-red-500",
     color: "text-orange-600",
@@ -36,6 +30,7 @@ const members = [
     name: "Mehmet Doruk Artan",
     role: "Project Team Leader",
     study: "Computer Engineering Student",
+    image: "/avatars/mehmetdoruk.jpeg",
     initial: "M",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
@@ -44,18 +39,21 @@ const members = [
       "https://www.linkedin.com/in/doruk-artan/?lipi=urn%3Ali%3Apage%3Ap_mwlite_my_network%3Bk3V3jLOyQNq9omp0ZxsjwQ%3D%3D",
   },
   {
-    name: "Tuana Kabakçı",
-    role: "Event Team Member",
-    study: "Psychology Student",
-    initial: "T",
-    gradient: "from-orange-500 to-red-500",
-    color: "text-orange-600",
-    linkedin: "https://www.linkedin.com/in/tuana-kabakci-8a6799364/",
+    name: "Aylin Ataç",
+    role: "Social Media Team Leader",
+    study: "Radio and Television Student",
+    image: "/avatars/aylin-atac.jpeg",
+    initial: "A",
+    gradient: "from-pink-500 to-purple-500",
+    color: "text-pink-600",
+    linkedin:
+      "https://www.linkedin.com/in/aylin-atac-96ba03322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   {
     name: "Sena Zeytin",
     role: "Event Team Member",
     study: "International Relations Student",
+    image: "/avatars/sena-zeytin.jpeg",
     initial: "S",
     gradient: "from-orange-500 to-red-500",
     color: "text-orange-600",
@@ -65,6 +63,7 @@ const members = [
     name: "Berivan Ertuğrul",
     role: "Event Team Member",
     study: "Software Engineering Student",
+    image: "/avatars/berivan-ertugrul.jpeg",
     initial: "B",
     gradient: "from-orange-500 to-red-500",
     color: "text-orange-600",
@@ -74,6 +73,7 @@ const members = [
     name: "Büşra Ceylan",
     role: "Event Team Member",
     study: "Software Engineering Student",
+    image: "/avatars/büşra-ceylan.png",
     initial: "B",
     gradient: "from-orange-500 to-red-500",
     color: "text-orange-600",
@@ -84,6 +84,7 @@ const members = [
     name: "Musab Ahmed Khan Umair",
     role: "Project Team Member",
     study: "AI Engineering Student",
+    image: "/avatars/musab-ahmed.jpeg",
     initial: "M",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
@@ -94,6 +95,7 @@ const members = [
     name: "Fatemeh Nasirian",
     role: "Project Team Member",
     study: "Software Engineering Student",
+    image: "/avatars/fatemeh-nasirah.png",
     initial: "F",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
@@ -104,6 +106,7 @@ const members = [
     name: "Berke Durdu",
     role: "Project Team Member",
     study: "Software Engineering Student",
+    image: "/avatars/berkedurdu.jpeg",
     initial: "B",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
@@ -115,6 +118,7 @@ const members = [
     name: "Esra Bingol",
     role: "Project Team Member",
     study: "Software Engineering Student",
+    image: "/avatars/esra-bingol.jpeg",
     initial: "E",
     gradient: "from-blue-500 to-purple-500",
     color: "text-purple-600",
@@ -122,19 +126,10 @@ const members = [
     linkedin: "https://www.linkedin.com/in/esra-bingol?trk=blended-typeahead"
   },
   {
-    name: "Aylin Ataç",
-    role: "Social Media Team Member",
-    study: "Radio and Television Student",
-    initial: "A",
-    gradient: "from-pink-500 to-purple-500",
-    color: "text-pink-600",
-    linkedin:
-      "https://www.linkedin.com/in/aylin-atac-96ba03322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-  },
-  {
     name: "Ece Ayhan",
     role: "Social Media Team Member",
     study: "Psychology Student",
+    image: "/avatars/ece-ayhan.jpeg",
     initial: "E",
     gradient: "from-pink-500 to-purple-500",
     color: "text-pink-600",
@@ -145,6 +140,7 @@ const members = [
     name: "Beyza Coşkun",
     role: "Social Media Team Member",
     study: "Psychology Student",
+    image: "/avatars/beyza-coskun.jpeg",
     initial: "B",
     gradient: "from-pink-500 to-purple-500",
     color: "text-pink-600",
@@ -155,6 +151,7 @@ const members = [
     name: "Sudenaz Orduluoğlu",
     role: "Social Media Team Member",
     study: "Psychology Student",
+    image: "/avatars/sudenaz-orduluoglu.jpeg",
     initial: "S",
     gradient: "from-pink-500 to-purple-500",
     color: "text-pink-600",
@@ -180,14 +177,28 @@ export default function Section2() {
             key={index}
             className="bg-white rounded-2xl shadow-md overflow-hidden transform transition hover:-translate-y-2 hover:shadow-xl"
           >
+            {/* Üst kısım - Avatar */}
             <div className={`bg-gradient-to-r ${m.gradient} h-32 flex justify-center items-center`}>
-              <div
-                className={`w-16 h-16 bg-white rounded-full flex items-center justify-center ${m.color} text-2xl font-bold`}
-              >
-                {m.initial}
-              </div>
+              {m.image ? (
+                <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-white">
+                  <Image
+                    src={m.image}
+                    alt={m.name}
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : (
+                <div
+                  className={`w-16 h-16 bg-white rounded-full flex items-center justify-center ${m.color} text-2xl font-bold`}
+                >
+                  {m.initial}
+                </div>
+              )}
             </div>
 
+            {/* Alt kısım - Bilgi */}
             <div className="p-6 text-center">
               <h3 className="text-lg font-semibold text-gray-900">{m.name}</h3>
               <p className={`text-sm font-medium ${m.color}`}>{m.role}</p>
