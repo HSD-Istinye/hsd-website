@@ -4,18 +4,18 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const members = [
-    {
-      name: "Ata Sesli",
-      role: "Ambassador",
-      study: "Computer Engineering Student",
-      image: "/avatars/ata-sesli.png",
-      initial: "A",
-      gradient: "from-green-500 to-teal-500",
-      color: "text-green-600",
-      github: "https://github.com/ata-sesli",
-      linkedin: "https://www.linkedin.com/in/ata-sesli?trk=blended-typeahead",
-    },
-    {
+  {
+    name: "Ata Sesli",
+    role: "Ambassador",
+    study: "Computer Engineering Student",
+    image: "/avatars/ata-sesli.png",
+    initial: "A",
+    gradient: "from-green-500 to-teal-500",
+    color: "text-green-600",
+    github: "https://github.com/ata-sesli",
+    linkedin: "https://www.linkedin.com/in/ata-sesli?trk=blended-typeahead",
+  },
+  {
     name: "Muhammed Said Tosun",
     role: "Event Team Leader",
     study: "Computer Engineering Student",
@@ -71,14 +71,14 @@ const members = [
   },
   {
     name: "Büşra Ceylan",
-    role: "Event Team Member",
+    role: "Project Team Member",
     study: "Software Engineering Student",
     image: "/avatars/büşra-ceylan.png",
     initial: "B",
-    gradient: "from-orange-500 to-red-500",
-    color: "text-orange-600",
+    gradient: "from-blue-500 to-purple-500",
+    color: "text-purple-600",
     github: "https://github.com/busracode",
-    linkedin: "https://www.linkedin.com/in/b%C3%BCsraceylan/",
+    linkedin: "https://www.linkedin.com/in/busra-ceylan/",
   },
   {
     name: "Musab Ahmed Khan Umair",
@@ -157,7 +157,7 @@ const members = [
     color: "text-pink-600",
     linkedin: "https://www.linkedin.com/in/sudenaz-orduluo%C4%9Flu-95919b31a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
-  
+
 ];
 
 export default function Section2() {
