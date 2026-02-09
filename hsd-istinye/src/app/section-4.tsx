@@ -1,10 +1,40 @@
 "use client";
 import React from "react";
+import { createClient } from "../../supabase/client";
 
 export default function Section4() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const formRef = React.useRef<HTMLFormElement>(null);
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Message sent (demo)");
+
+    const form = formRef.current;
+    if (!form) return;
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const subject = formData.get("subject") as string;
+    const message = formData.get("message") as string;
+
+    const supabase = createClient();
+
+    const { error } = await supabase.from("messages").insert([
+      {
+        full_name: name,
+        email: email,
+        category: subject,
+        text: message,
+      },
+    ]);
+
+    if (error) {
+      console.error("❌ Error inserting message:", error.message);
+      alert("Failed to send message. Please try again.");
+    } else {
+      alert("✅ Message sent successfully!");
+      form.reset();  
+    }
   };
 
   return (
@@ -42,7 +72,7 @@ export default function Section4() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">Email</div>
-                      <div className="text-white">hsd@istinye.edu.tr</div>
+                      <div className="text-white">hsdistinye@gmail.com</div>
                     </div>
                   </li>
 
@@ -68,12 +98,6 @@ export default function Section4() {
               <div>
                 <h4 className="text-white font-medium mb-3">Follow Us</h4>
                 <div className="flex gap-3">
-                  {/* X button (placeholder link).*/}
-                  <a className="bg-[#6b21a8] p-3 rounded-md inline-flex items-center justify-center" aria-label="X" href="#" title="X">
-                    <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M23 3a1 1 0 0 0-1.3-.1L13 9.4 8.4 5 3.7 9.7A1 1 0 0 0 5 12.1l4.7-4.7L13 13l8.7-8.7A1 1 0 0 0 23 3z" />
-                    </svg>
-                  </a>
 
                   {/* Instagram */}
                   <a
@@ -135,13 +159,13 @@ export default function Section4() {
                     </svg>
                   </div>
                   <div>
-                    <strong className="block">Demo Contact Form</strong>
-                    <span className="text-sm block">This is a sample form for demonstration purposes.</span>
+                    <strong className="block">Contact Form</strong>
+                    <span className="text-sm block">You can contact us by filling this form.</span>
                   </div>
                 </div>
 
                 {/* FORM */}
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form  ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="sr-only">Name</label>
                     <input required name="name" placeholder="Your name" className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400" />
@@ -154,7 +178,7 @@ export default function Section4() {
 
                   <div>
                     <label className="sr-only">Subject</label>
-                    <select name="subject" className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    <select  name="subject" className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400">
                       <option>General Inquiry</option>
                       <option>Partnership</option>
                       <option>Events</option>
@@ -163,7 +187,7 @@ export default function Section4() {
 
                   <div>
                     <label className="sr-only">Message</label>
-                    <textarea name="message" placeholder="Tell us about your inquiry..." rows={5} className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
+                    <textarea required name="message" placeholder="Tell us about your inquiry..." rows={5} className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
                   </div>
 
                   <div>
@@ -183,7 +207,7 @@ export default function Section4() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="font-semibold text-lg md:text-xl">Huawei Student Developers - Istinye University</div>
           <div className="text-sm md:text-base text-gray-300 mt-2">
-            © 2024 HSD Istinye. Empowering the next generation of developers.
+            Empowering the next generation of developers.
           </div>
         </div>
       </footer>

@@ -1,66 +1,123 @@
 "use client"
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const HuaweiStudentDevelopers = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsMobileMenuOpen(false); // Close menu after clicking
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="max-w-6xl w-full bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 flex items-center justify-center p-4 sm:p-6">
+      <div className="max-w-screen-2xl w-full mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-purple-100/50">
         
-        <div className="bg-white px-8 py-6 border-b border-gray-100">
+        {/* Enhanced Header */}
+        <div className="bg-white/80 backdrop-blur-md px-6 sm:px-8 py-5 border-b border-purple-100 sticky top-0 z-50">
           <div className="flex justify-between items-center">
            
-            <div className="flex items-center">
-              <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
-                <span className="font-bold text-purple-600">H</span>
-              </div>
-              <h1 className="font-bold text-lg">
-                HSD <span className="text-gray-400">•</span>{' '}
-                <span className="text-gray-600">Istinye</span>
+            {/* Logo with actual image */}
+            <div className="flex items-center group cursor-pointer">
+              <img 
+                src="/hsd-logo.jpg" 
+                alt="HSD Logo" 
+                className="w-11 h-11 rounded-xl object-cover mr-3 shadow-lg shadow-purple-200 group-hover:shadow-purple-300 transition-all duration-300 group-hover:scale-105"
+              />
+              <h1 className="font-bold text-xl">
+                <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">HSD</span>
+                <span className="text-gray-300 mx-2">•</span>
+                <span className="text-gray-600 font-medium">Istinye</span>
               </h1>
             </div>
 
-            <nav className="hidden md:flex space-x-8">
+            {/* Desktop Navigation with enhanced styling */}
+            <nav className="hidden md:flex items-center space-x-2">
               <button 
                 onClick={() => scrollToSection('who-are-we')} 
-                className="text-gray-900 hover:text-purple-600 transition-colors"
+                className="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg font-medium transition-all duration-200"
               >
                 Who are we?
               </button>
               <button 
                 onClick={() => scrollToSection('our-events')} 
-                className="text-gray-900 hover:text-purple-600 transition-colors"
+                className="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg font-medium transition-all duration-200"
               >
                 Our Events
               </button>
               <button 
                 onClick={() => scrollToSection('sponsorships')} 
-                className="text-gray-900 hover:text-purple-600 transition-colors"
+                className="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg font-medium transition-all duration-200"
               >
                 Sponsorships
               </button>
               <button 
                 onClick={() => scrollToSection('contact-us')} 
-                className="text-gray-900 hover:text-purple-600 transition-colors"
+                className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-medium shadow-lg shadow-purple-200 hover:shadow-purple-300 hover:scale-105 transition-all duration-300"
               >
                 Contact Us
               </button>
             </nav>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button - now functional */}
             <div className="md:hidden">
-              <button className="text-gray-900" aria-label="Open menu">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+              <button 
+                onClick={toggleMobileMenu}
+                className="p-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors" 
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              >
+                {isMobileMenuOpen ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
               </button>
             </div>
+          </div>
+
+          {/* Mobile Menu Dropdown */}
+          <div 
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              isMobileMenuOpen ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <nav className="flex flex-col space-y-1 pb-2">
+              <button 
+                onClick={() => scrollToSection('who-are-we')} 
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl font-medium transition-all duration-200"
+              >
+                Who are we?
+              </button>
+              <button 
+                onClick={() => scrollToSection('our-events')} 
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl font-medium transition-all duration-200"
+              >
+                Our Events
+              </button>
+              <button 
+                onClick={() => scrollToSection('sponsorships')} 
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl font-medium transition-all duration-200"
+              >
+                Sponsorships
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact-us')} 
+                className="w-full text-left px-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-medium shadow-lg shadow-purple-200 transition-all duration-200"
+              >
+                Contact Us
+              </button>
+            </nav>
           </div>
         </div>
 
@@ -95,17 +152,20 @@ const HuaweiStudentDevelopers = () => {
 
           {/* Content layer */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center px-8 text-center text-white">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">Huawei Student Developers</h2>
-            <p className="text-2xl mb-6 opacity-90">Istinye University</p>
-            <p className="text-lg max-w-2xl mx-auto mb-8 opacity-90">
-              Empowering the next generation of developers through innovation, collaboration, and cutting-edge technology
-            </p>
-            <button 
-              onClick={() => scrollToSection('who-are-we')} 
-              className="bg-white text-purple-700 font-medium py-3 px-8 rounded-full transition hover:bg-opacity-90 mt-6"
-            >
-              Learn More
-            </button>
+            {/* Frosted glass card behind text */}
+            <div className="bg-black/40 backdrop-blur-md rounded-3xl px-12 py-10 border border-white/10 shadow-2xl">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">Huawei Student Developers</h2>
+              <p className="text-2xl mb-6 opacity-95">Istinye University</p>
+              <p className="text-lg max-w-2xl mx-auto mb-8 opacity-90">
+                Empowering the next generation of developers through innovation, collaboration, and cutting-edge technology
+              </p>
+              <button 
+                onClick={() => scrollToSection('who-are-we')} 
+                className="bg-white text-purple-700 font-medium py-3 px-8 rounded-full transition hover:bg-opacity-90 mt-2 shadow-lg"
+              >
+                Learn More
+              </button>
+            </div>
           </div>
         </section>
 
@@ -129,11 +189,11 @@ const HuaweiStudentDevelopers = () => {
               {/* Kenarlık ve gölge yok */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 text-center">
-                  <div className="text-4xl font-bold mb-2 text-purple-600">150+</div>
+                  <div className="text-4xl font-bold mb-2 text-purple-600">30+</div>
                   <div className="text-gray-600">Active Members</div>
                 </div>
                 <div className="p-6 text-center">
-                  <div className="text-4xl font-bold mb-2 text-purple-600">25+</div>
+                  <div className="text-4xl font-bold mb-2 text-purple-600">10+</div>
                   <div className="text-gray-600">Events Hosted</div>
                 </div>
               </div>
