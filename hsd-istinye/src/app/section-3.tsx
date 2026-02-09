@@ -399,7 +399,7 @@ const Section3: React.FC = () => {
 
       <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <section className="text-center mb-20">
+          <section id="our-events" className="text-center mb-20">
             <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
             {/*Event registration */}
             <section id="registration-section" className="mt-16 mb-20 flex flex-col items-center">
@@ -514,7 +514,7 @@ const Section3: React.FC = () => {
             </div>
           </section>
 
-          <section className="text-center">
+          <section id="sponsorships" className="text-center">
             <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12">
               Partner with us to support the next generation of developers and gain access to top talent
