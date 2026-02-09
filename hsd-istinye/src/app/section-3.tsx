@@ -399,8 +399,30 @@ const Section3: React.FC = () => {
 
       <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <section id="our-events" className="text-center mb-20">
+          <section className="text-center mb-20">
             <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
+            {/*Event registration */}
+            <section id="registration-section" className="mt-16 mb-20 flex flex-col items-center">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">Register for Upcoming Event</h2>
+
+              <div className="relative w-[700px] h-[420px] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
+
+                <iframe
+                  src="https://luma.com/embed/event/evt-aICL9XglC4Lr0lh/simple"
+                  className="absolute top-0 left-0 w-full h-full"
+                  style={{
+                    border: "none",
+                    display: "block",
+                    transform: "scale(1.0)",
+                    transformOrigin: "top left",
+                    width: "104%",
+                    height: "100%"
+                  }}
+                  allow="fullscreen; payment"
+                  scrolling="no"
+                ></iframe>
+              </div>
+            </section>
             <p className="max-w-2xl mx-auto text-lg text-gray-600">
               Join us for exciting workshops, hackathons, and networking events designed to enhance your coding skills
             </p>
@@ -430,9 +452,8 @@ const Section3: React.FC = () => {
                         className="relative border border-gray-200 rounded-md p-1 min-h-[8rem] flex flex-col group bg-gray-50 hover:bg-white transition-colors duration-200"
                       >
                         <div
-                          className={`text-xs font-semibold self-start mb-1 ${
-                            isToday ? "bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center" : "text-gray-700"
-                          }`}
+                          className={`text-xs font-semibold self-start mb-1 ${isToday ? "bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center" : "text-gray-700"
+                            }`}
                         >
                           {day}
                         </div>
@@ -446,6 +467,7 @@ const Section3: React.FC = () => {
                               <p className="font-semibold truncate">{event.title}</p>
                             </div>
                           ))}
+
                         </div>
                         <button
                           onClick={() => openAddModal(date)}
@@ -492,7 +514,7 @@ const Section3: React.FC = () => {
             </div>
           </section>
 
-          <section id="sponsorships" className="text-center">
+          <section className="text-center">
             <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12">
               Partner with us to support the next generation of developers and gain access to top talent
