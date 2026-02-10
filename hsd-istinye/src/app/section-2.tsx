@@ -39,15 +39,15 @@ const members = [
       "https://www.linkedin.com/in/doruk-artan/?lipi=urn%3Ali%3Apage%3Ap_mwlite_my_network%3Bk3V3jLOyQNq9omp0ZxsjwQ%3D%3D",
   },
   {
-    name: "Aylin Ataç",
+    name: "Mustafa Muhammet Erdoğan",
     role: "Social Media Team Leader",
-    study: "Radio and Television Student",
-    image: "/avatars/aylin-atac.jpeg",
-    initial: "A",
+    study: "Digital Game Design Student",
+    image: "/avatars/mustafamuhammet.jpeg",
+    initial: "M",
     gradient: "from-pink-500 to-purple-500",
     color: "text-pink-600",
     linkedin:
-      "https://www.linkedin.com/in/aylin-atac-96ba03322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      "https://www.linkedin.com/in/mustafa-muhammet-erdo%C4%9Fan-50758438a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   },
   {
     name: "Sena Zeytin",
@@ -91,17 +91,7 @@ const members = [
     github: "musabaku",
     linkedin: "https://www.linkedin.com/in/musab-ahmed-khan-umair-77abb5132?trk=blended-typeahead",
   },
-  {
-    name: "Fatemeh Nasirian",
-    role: "Project Team Member",
-    study: "Software Engineering Student",
-    image: "/avatars/fatemeh-nasirah.png",
-    initial: "F",
-    gradient: "from-blue-500 to-purple-500",
-    color: "text-purple-600",
-    github: "https://github.com/FatimaNsrn",
-    linkedin: "https://www.linkedin.com/in/fatemeh-nasirian",
-  },
+
   {
     name: "Berke Durdu",
     role: "Project Team Member",
@@ -125,28 +115,7 @@ const members = [
     github: "https://github.com/esra-bingol",
     linkedin: "https://www.linkedin.com/in/esra-bingol?trk=blended-typeahead"
   },
-  {
-    name: "Ece Ayhan",
-    role: "Social Media Team Member",
-    study: "Psychology Student",
-    image: "/avatars/ece-ayhan.jpeg",
-    initial: "E",
-    gradient: "from-pink-500 to-purple-500",
-    color: "text-pink-600",
-    linkedin:
-      "https://www.linkedin.com/in/ece-ayhan-687228299?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-  },
-  {
-    name: "Beyza Coşkun",
-    role: "Social Media Team Member",
-    study: "Psychology Student",
-    image: "/avatars/beyza-coskun.jpeg",
-    initial: "B",
-    gradient: "from-pink-500 to-purple-500",
-    color: "text-pink-600",
-    linkedin:
-      "https://www.linkedin.com/in/beyza-co%C5%9Fkun-1a1165334?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-  },
+
   {
     name: "Sudenaz Orduluoğlu",
     role: "Social Media Team Member",
@@ -157,7 +126,58 @@ const members = [
     color: "text-pink-600",
     linkedin: "https://www.linkedin.com/in/sudenaz-orduluo%C4%9Flu-95919b31a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
-
+  {
+    name: "Aylin Ataç",
+    role: "Social Media Team Member",
+    study: "Radio and Television Student",
+    image: "/avatars/aylin-atac.jpeg",
+    initial: "A",
+    gradient: "from-pink-500 to-purple-500",
+    color: "text-pink-600",
+    linkedin:
+      "https://www.linkedin.com/in/aylin-atac-96ba03322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+  },
+  {
+    name: "Elif Su Dayı",
+    role: "Social Media Team Member",
+    study: "Computer Engineering Student",
+    image: "/avatars/elfisu.jpeg",
+    initial: "E",
+    gradient: "from-pink-500 to-purple-500",
+    color: "text-pink-600",
+    linkedin: "https://www.linkedin.com/in/elif-su-day%C4%B1/",
+  },
+  {
+    name: "Melike Deş",
+    role: "Social Media Team Member",
+    study: "Software Engineering Student",
+    image: "/avatars/melike.jpeg",
+    initial: "M",
+    gradient: "from-pink-500 to-purple-500",
+    color: "text-pink-600",
+    linkedin: "https://www.linkedin.com/in/melike-de%C5%9F-793609336/",
+  },
+  {
+    name: "Elanur Kağıtçı",
+    role: "Event Team Member",
+    study: "International Relations Student",
+    image: "/avatars/elanur.jpeg",
+    initial: "E",
+    gradient: "from-orange-500 to-red-500",
+    color: "text-orange-600",
+    linkedin:
+      "https://www.linkedin.com/in/elanur-ka%C4%9Fitci-51b283263?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+  },
+  {
+    name: "Gabriel Kesler",
+    role: "Event Team Member",
+    study: "Software Engineering Student",
+    image: "/avatars/gabriel.jpeg",
+    initial: "G",
+    gradient: "from-orange-500 to-red-500",
+    color: "text-orange-600",
+    linkedin: "https://www.linkedin.com/in/gabriel-kesler-134982370",
+  },
 ];
 
 export default function Section2() {
@@ -184,8 +204,8 @@ export default function Section2() {
                   <Image
                     src={m.image}
                     alt={m.name}
-                    width={64}
-                    height={64}
+                    width={200}
+                    height={200}
                     className="w-full h-full object-cover"
                   />
                 </div>

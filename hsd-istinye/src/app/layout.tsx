@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "HSD - Huawei Student Developers | Istinye University",
   description: "Huawei Student Developers at Istinye University - Empowering the next generation of developers through innovation, collaboration, and cutting-edge technology.",
+  icons: {
+    icon: "/logos/hsd_logo.jpeg",
+    apple: "/logos/hsd_logo.jpeg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -22,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="tr" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body>{children}</body>
     </html>

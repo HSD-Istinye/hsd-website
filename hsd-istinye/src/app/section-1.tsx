@@ -27,9 +27,9 @@ const HuaweiStudentDevelopers = () => {
             {/* Logo with actual image */}
             <div className="flex items-center group cursor-pointer">
               <img
-                src="/hsd-logo.jpg"
+                src="/logos/hsd_logo.jpeg"
                 alt="HSD Logo"
-                className="w-11 h-11 rounded-xl object-cover mr-3 shadow-lg shadow-purple-200 group-hover:shadow-purple-300 transition-all duration-300 group-hover:scale-105"
+                className="h-7 w-auto object-contain mr-3 transition-all duration-300 group-hover:scale-105"
               />
               <h1 className="font-bold text-xl">
                 <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">HSD</span>
