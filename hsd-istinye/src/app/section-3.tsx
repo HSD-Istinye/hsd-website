@@ -405,7 +405,7 @@ const Section3: React.FC = () => {
             <section id="latest-event" className="mt-16 mb-20 flex flex-col items-center">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Register for Upcoming Event</h2>
 
-              <div className="relative w-full max-w-[700px] aspect-[5/3] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
+              <div className="relative w-full max-w-[700px] aspect-[2/5] sm:aspect-[5/3] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
 
                 <iframe
                   src="https://luma.com/embed/event/evt-dijf80pV0up9OnC/simple"
