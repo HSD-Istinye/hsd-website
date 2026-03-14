@@ -402,10 +402,10 @@ const Section3: React.FC = () => {
           <section id="our-events" className="text-center mb-20">
             <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
             {/*Event registration */}
-            <section id="registration-section" className="mt-16 mb-20 flex flex-col items-center">
+            <section id="latest-event" className="mt-16 mb-20 flex flex-col items-center">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Register for Upcoming Event</h2>
 
-              <div className="relative w-[700px] h-[420px] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
+              <div className="relative w-full max-w-[700px] aspect-[5/3] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
 
                 <iframe
                   src="https://luma.com/embed/event/evt-dijf80pV0up9OnC/simple"
@@ -413,7 +413,6 @@ const Section3: React.FC = () => {
                   style={{
                     border: "none",
                     display: "block",
-                    transform: "scale(1.0)",
                     transformOrigin: "top left",
                     width: "104%",
                     height: "100%"
