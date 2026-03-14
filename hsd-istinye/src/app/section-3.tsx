@@ -408,7 +408,7 @@ const Section3: React.FC = () => {
               <div className="relative w-[700px] h-[420px] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
 
                 <iframe
-                  src="https://luma.com/embed/event/evt-aICL9XglC4Lr0lh/simple"
+                  src="https://luma.com/embed/event/evt-dijf80pV0up9OnC/simple"
                   className="absolute top-0 left-0 w-full h-full"
                   style={{
                     border: "none",
