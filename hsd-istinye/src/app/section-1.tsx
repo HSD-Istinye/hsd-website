@@ -40,12 +40,7 @@ const HuaweiStudentDevelopers = () => {
 
             {/* Desktop Navigation with enhanced styling */}
             <nav className="hidden md:flex items-center space-x-2">
-              <button
-                onClick={() => scrollToSection('latest-event')}
-                className="px-4 py-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
-              >
-                🎟️ Register
-              </button>
+
               <button
                 onClick={() => scrollToSection('who-are-we')}
                 className="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg font-medium transition-all duration-200"
@@ -98,12 +93,7 @@ const HuaweiStudentDevelopers = () => {
               }`}
           >
             <nav className="flex flex-col space-y-1 pb-2">
-              <button
-                onClick={() => scrollToSection('latest-event')}
-                className="w-full text-left px-4 py-3 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl font-medium transition-all duration-200"
-              >
-                🎟️ Register for Our Latest Event
-              </button>
+
               <button
                 onClick={() => scrollToSection('who-are-we')}
                 className="w-full text-left px-4 py-3 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl font-medium transition-all duration-200"
@@ -170,12 +160,20 @@ const HuaweiStudentDevelopers = () => {
               <p className="text-lg max-w-2xl mx-auto mb-8 opacity-90">
                 Empowering the next generation of developers through innovation, collaboration, and cutting-edge technology
               </p>
-              <button
-                onClick={() => scrollToSection('who-are-we')}
-                className="bg-white text-purple-700 font-medium py-3 px-8 rounded-full transition hover:bg-opacity-90 mt-2 shadow-lg"
-              >
-                Learn More
-              </button>
+              <div className="flex flex-row items-center justify-center gap-4 mt-2">
+                <button
+                  onClick={() => scrollToSection('who-are-we')}
+                  className="bg-white text-purple-700 font-medium py-3 px-8 rounded-full transition hover:bg-opacity-90 shadow-lg"
+                >
+                  Learn More
+                </button>
+                <button
+                  onClick={() => scrollToSection('latest-event')}
+                  className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium py-3 px-8 rounded-full transition hover:from-purple-700 hover:to-indigo-700 shadow-lg"
+                >
+                  🎟️ Register
+                </button>
+              </div>
             </div>
           </div>
         </section>
