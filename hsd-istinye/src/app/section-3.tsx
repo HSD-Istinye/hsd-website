@@ -2,9 +2,11 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+const Slider = dynamic(() => import("react-slick"), { ssr: false });
 import {
   Trophy,
   Laptop,
@@ -209,8 +211,7 @@ const Section3: React.FC = () => {
     pauseOnHover: true,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: Math.min(3, eventCards.length) } },
-      { breakpoint: 768, settings: { slidesToShow: Math.min(2, eventCards.length) } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
+      { breakpoint: 768, settings: { slidesToShow: 1 } },
     ],
   };
 
