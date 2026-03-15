@@ -514,9 +514,12 @@ const Section3: React.FC = () => {
             </div>
           </section>
 
-          <section id="sponsorships" className="text-center">
+          {/* Separation between Events and Sponsorships */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-200 to-transparent my-16"></div>
+
+          <section id="sponsorships" className="text-center relative py-12 rounded-3xl bg-slate-50 border border-slate-100/50 shadow-[0_0_40px_-15px_rgba(0,0,0,0.05)]">
             <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
-            <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12">
+            <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12 px-4">
               Partner with us to support the next generation of developers and gain access to top talent
             </p>
 

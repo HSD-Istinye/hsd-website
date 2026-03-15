@@ -167,12 +167,6 @@ const HuaweiStudentDevelopers = () => {
                 >
                   Learn More
                 </button>
-                <button
-                  onClick={() => scrollToSection('latest-event')}
-                  className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium py-3 px-8 rounded-full transition hover:from-purple-700 hover:to-indigo-700 shadow-lg"
-                >
-                  🎟️ Register
-                </button>
               </div>
             </div>
           </div>
