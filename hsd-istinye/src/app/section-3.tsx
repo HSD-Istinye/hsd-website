@@ -343,7 +343,7 @@ const Section3: React.FC = () => {
 
   return (
     <>
-      <style>{`
+  <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(${scrollWidth}); }
@@ -357,226 +357,230 @@ const Section3: React.FC = () => {
         .event-slider .slick-track { display: flex !important; align-items: stretch; }
         .event-slider .slick-slide { height: auto; display: flex !important; align-items: stretch; }
         .event-slider .slick-slide > div { width: 100%; display: flex; flex-direction: column; }
-      `}</style>
-
+      `}
+      
+    </style>
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">{editingEvent ? "Edit Event" : "Add Event"}</h2>
-            {selectedDate && <p className="text-sm text-gray-500 mb-4">Date: {formatDate(selectedDate)}</p>}
-            <input
-              type="text"
-              value={eventTitle}
-              onChange={(event) => setEventTitle(event.target.value)}
-              placeholder="Event Title"
-              className="w-full p-2 border rounded mb-4"
-            />
-            <textarea
-              value={eventDescription}
-              onChange={(event) => setEventDescription(event.target.value)}
-              placeholder="Event Description"
-              className="w-full p-2 border rounded mb-4"
-              rows={4}
-            />
-            <div className="flex justify-end gap-2">
-              {editingEvent && (
-                <button
-                  onClick={() => handleDeleteEvent(editingEvent.id)}
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                >
-                  Delete
-                </button>
-              )}
-              <button onClick={closeModal} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-                Cancel
-              </button>
-              <button onClick={handleSaveEvent} className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+        <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+        <h2 className="text-xl font-bold mb-4">{editingEvent ? "Edit Event" : "Add Event"}</h2>
+        {selectedDate && <p className="text-sm text-gray-500 mb-4">Date: {formatDate(selectedDate)}</p>}
+    
+    <input
+    type="text"
+    value={eventTitle}
+    onChange={(event) => setEventTitle(event.target.value)}
+    placeholder="Event Title"
+    className="w-full p-2 border rounded mb-4"
+    />
+    
+    <textarea
+    value={eventDescription}
+    onChange={(event) => setEventDescription(event.target.value)}
+    placeholder="Event Description"
+    className="w-full p-2 border rounded mb-4"
+    rows={4}
+    />
+  
+    <div className="flex justify-end gap-2">
+    {editingEvent && (
+    <button
+    onClick={() => handleDeleteEvent(editingEvent.id)}
+    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+    >
+    Delete
+    </button>
+    )}
+    
+    <button onClick={closeModal} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+    Cancel
+    </button>
+    <button onClick={handleSaveEvent} className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+    Save
+    </button>
+    </div>
+    </div>
+    </div>
+    )}
 
-      <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <section id="our-events" className="text-center mb-20">
-            <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
-            {/*Event registration */}
-            <section id="latest-event" className="mt-16 mb-20 flex flex-col items-center">
-              <h2 className="text-2xl font-bold mb-6 text-gray-800">Register for Upcoming Event</h2>
+    <div className="bg-white font-sans text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto">
+    <section id="our-events" className="text-center mb-20">
+    <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
+            
+    <section id="latest-event" className="mt-16 mb-20 flex flex-col items-center">
+    <h2 className="text-2xl font-bold mb-6 text-gray-800">Register for Upcoming Event</h2>
+    <div className="relative w-full max-w-[700px] aspect-[2/5] sm:aspect-[5/3] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
 
-              <div className="relative w-full max-w-[700px] aspect-[2/5] sm:aspect-[5/3] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
+    <iframe
+    src="https://luma.com/embed/event/evt-dijf80pV0up9OnC/simple"
+    className="absolute top-0 left-0 w-full h-full"
+    style={{
+    border: "none",
+    display: "block",
+    transformOrigin: "top left",
+    width: "104%",
+    height: "100%"
+    }}
+    allow="fullscreen; payment"
+    scrolling="no"
+    ></iframe>
+    </div>
+    </section>
+    <p className="max-w-2xl mx-auto text-lg text-gray-600">
+    Join us!
+    </p>
 
-                <iframe
-                  src="https://luma.com/embed/event/evt-dijf80pV0up9OnC/simple"
-                  className="absolute top-0 left-0 w-full h-full"
-                  style={{
-                    border: "none",
-                    display: "block",
-                    transformOrigin: "top left",
-                    width: "104%",
-                    height: "100%"
-                  }}
-                  allow="fullscreen; payment"
-                  scrolling="no"
-                ></iframe>
-              </div>
-            </section>
-            <p className="max-w-2xl mx-auto text-lg text-gray-600">
-              Join us for exciting workshops, hackathons, and networking events designed to enhance your coding skills
-            </p>
+    <div className="max-w-4xl mx-auto">
+    <div className="mt-12 bg-white rounded-xl shadow-lg p-4 text-left">
+    <div className="flex justify-between items-center mb-4">
+    <button onClick={handlePrevWeek} className="p-2 rounded-full hover:bg-gray-100">
+    <ChevronLeft size={20} className="text-gray-600" />
+    </button>
+    <h3 className="text-xl font-bold text-gray-800">{weekRange}</h3>
+    <button onClick={handleNextWeek} className="p-2 rounded-full hover:bg-gray-100">
+    <ChevronRight size={20} className="text-gray-600" />
+    </button>
+    </div>
+    <div className="grid grid-cols-7 gap-1">
+    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
+    <div key={day} className="text-center font-semibold text-gray-500 text-xs py-2">
+    {day}
+    </div>
+    ))}
+    {weekDays.map(({ key, day, date, events: dayEvents }) => {
+    const isToday = formatDate(new Date()) === formatDate(date);
+    return (
+    <div
+    key={key}
+    className="relative border border-gray-200 rounded-md p-1 min-h-[8rem] flex flex-col group bg-gray-50 hover:bg-white transition-colors duration-200"
+    >
+    <div
+    className={`text-xs font-semibold self-start mb-1 ${isToday ? "bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center" : "text-gray-700"
+    }`}
+    >
+   {day}
+    </div>
+    <div className="flex-grow overflow-y-auto space-y-1 text-xs">
+    {dayEvents.map((event) => (
+    <div
+    key={event.id}
+    onClick={() => openEditModal(event)}
+    className={`p-1.5 rounded cursor-pointer ${colorClasses[event.color] || colorClasses.blue}`}
+    >
+    <p className="font-semibold truncate">{event.title}</p>
+    </div>
+    ))}
 
-            <div className="max-w-4xl mx-auto">
-              <div className="mt-12 bg-white rounded-xl shadow-lg p-4 text-left">
-                <div className="flex justify-between items-center mb-4">
-                  <button onClick={handlePrevWeek} className="p-2 rounded-full hover:bg-gray-100">
-                    <ChevronLeft size={20} className="text-gray-600" />
-                  </button>
-                  <h3 className="text-xl font-bold text-gray-800">{weekRange}</h3>
-                  <button onClick={handleNextWeek} className="p-2 rounded-full hover:bg-gray-100">
-                    <ChevronRight size={20} className="text-gray-600" />
-                  </button>
-                </div>
-                <div className="grid grid-cols-7 gap-1">
-                  {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-                    <div key={day} className="text-center font-semibold text-gray-500 text-xs py-2">
-                      {day}
-                    </div>
-                  ))}
-                  {weekDays.map(({ key, day, date, events: dayEvents }) => {
-                    const isToday = formatDate(new Date()) === formatDate(date);
-                    return (
-                      <div
-                        key={key}
-                        className="relative border border-gray-200 rounded-md p-1 min-h-[8rem] flex flex-col group bg-gray-50 hover:bg-white transition-colors duration-200"
-                      >
-                        <div
-                          className={`text-xs font-semibold self-start mb-1 ${isToday ? "bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center" : "text-gray-700"
-                            }`}
-                        >
-                          {day}
-                        </div>
-                        <div className="flex-grow overflow-y-auto space-y-1 text-xs">
-                          {dayEvents.map((event) => (
-                            <div
-                              key={event.id}
-                              onClick={() => openEditModal(event)}
-                              className={`p-1.5 rounded cursor-pointer ${colorClasses[event.color] || colorClasses.blue}`}
-                            >
-                              <p className="font-semibold truncate">{event.title}</p>
-                            </div>
-                          ))}
+    </div>
+    <button
+    onClick={() => openAddModal(date)}
+    className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 text-purple-500 hover:text-purple-700 transition-opacity"
+    >
+    <PlusCircle size={18} />
+    </button>
+    </div>
+    );
+    })}
+    </div>
+    </div>
+    </div>
 
-                        </div>
-                        <button
-                          onClick={() => openAddModal(date)}
-                          className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 text-purple-500 hover:text-purple-700 transition-opacity"
-                        >
-                          <PlusCircle size={18} />
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+    <div className="mt-12 relative">
+    <Slider {...sliderSettings} className="event-slider">
+    {eventCards.map((card) => (
+    <div key={card.key} className="px-3 h-full">
+    <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
+    <div className={`${card.headerClasses} p-8 text-white flex flex-col items-center gap-4`}>
+    <div className="p-3 rounded-lg bg-white/10">{card.icon}</div>
+    <h3 className="text-xl font-bold">{card.title}</h3>
+    </div>
 
-            <div className="mt-12 relative">
-              <Slider {...sliderSettings} className="event-slider">
-                {eventCards.map((card) => (
-                  <div key={card.key} className="px-3 h-full">
-                    <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
-                      <div className={`${card.headerClasses} p-8 text-white flex flex-col items-center gap-4`}>
-                        <div className="p-3 rounded-lg bg-white/10">{card.icon}</div>
-                        <h3 className="text-xl font-bold">{card.title}</h3>
-                      </div>
+    <div className="bg-white p-6 flex flex-col flex-1">
+    <div className="flex-1">
+    <p className="text-gray-600 mb-6">{card.description}</p>
+    </div>
+    <div className="mt-auto flex items-center justify-between">
+    <div className="text-left">
+    <div className="font-semibold text-gray-800">{card.participants}</div>
+    <div className="text-xs text-gray-500 mt-1">{card.meta}</div>
+    </div>
 
-                      <div className="bg-white p-6 flex flex-col flex-1">
-                        <div className="flex-1">
-                          <p className="text-gray-600 mb-6">{card.description}</p>
-                        </div>
-                        <div className="mt-auto flex items-center justify-between">
-                          <div className="text-left">
-                            <div className="font-semibold text-gray-800">{card.participants}</div>
-                            <div className="text-xs text-gray-500 mt-1">{card.meta}</div>
-                          </div>
+    <Link href={card.href} className={`text-sm ${card.buttonClasses} text-white px-3 py-2 rounded-full`}>
+    View Details →
+    </Link>
+    </div>
+    </div>
+    </div>
+    </div>
+    ))}
+    </Slider>
+    </div>
+    </section>
 
-                          <Link href={card.href} className={`text-sm ${card.buttonClasses} text-white px-3 py-2 rounded-full`}>
-                            View Details →
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Slider>
-            </div>
-          </section>
+         
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-200 to-transparent my-16"></div>
 
-          {/* Separation between Events and Sponsorships */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-200 to-transparent my-16"></div>
+    <section id="sponsorships" className="text-center relative py-12 rounded-3xl bg-slate-50 border border-slate-100/50 shadow-[0_0_40px_-15px_rgba(0,0,0,0.05)]">
+    <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
+    <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12 px-4">
+    Partner with us to support the next generation of developers and gain access to top talent
+    </p>
 
-          <section id="sponsorships" className="text-center relative py-12 rounded-3xl bg-slate-50 border border-slate-100/50 shadow-[0_0_40px_-15px_rgba(0,0,0,0.05)]">
-            <h2 className="text-3xl font-extrabold mb-4">Sponsorships</h2>
-            <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12 px-4">
-              Partner with us to support the next generation of developers and gain access to top talent
-            </p>
+    <div className="mb-16">
+    <h3 className="text-xl font-bold text-gray-700 mb-8">Our Sponsors</h3>
+    <div className="relative w-full overflow-hidden group">
+    <div className="flex w-max animate-scroll">
+    {[...sponsors, ...sponsors].map((sponsor, index) => (
+    <SponsorLogo key={`${sponsor}-${index}`} name={sponsor} />
+    ))}
+    </div>
+    </div>
+    </div>
 
-            <div className="mb-16">
-              <h3 className="text-xl font-bold text-gray-700 mb-8">Our Sponsors</h3>
-              <div className="relative w-full overflow-hidden group">
-                <div className="flex w-max animate-scroll">
-                  {[...sponsors, ...sponsors].map((sponsor, index) => (
-                    <SponsorLogo key={`${sponsor}-${index}`} name={sponsor} />
-                  ))}
-                </div>
-              </div>
-            </div>
+    <div className="mb-12">
+    <h3 className="text-xl font-bold text-gray-700 mb-10">Why Sponsor Us?</h3>
+    <div className="grid md:grid-cols-3 gap-10 text-left">
+    <div className="flex flex-col items-center text-center">
+    <div className="p-3 bg-purple-100 rounded-full mb-4">
+    <Users className="text-purple-600" size={24} />
+    </div>
+    <h4 className="text-lg font-bold mb-2">Access to Top Talent</h4>
+    <p className="text-gray-600">Connect with skilled students for internships and full-time positions</p>
+    </div>
+    <div className="flex flex-col items-center text-center">
+    <div className="p-3 bg-blue-100 rounded-full mb-4">
+    <Eye className="text-blue-600" size={24} />
+    </div>
+    <h4 className="text-lg font-bold mb-2">Brand Visibility</h4>
+    <p className="text-gray-600">Showcase your company to 150+ active developer students</p>
+    </div>
+    <div className="flex flex-col items-center text-center">
+    <div className="p-3 bg-green-100 rounded-full mb-4">
+    <Handshake className="text-green-600" size={24} />
+    </div>
+    <h4 className="text-lg font-bold mb-2">Innovation Partnership</h4>
+    <p className="text-gray-600">Collaborate on cutting-edge projects and research initiatives</p>
+    </div>
+    </div>
+    </div>
 
-            <div className="mb-12">
-              <h3 className="text-xl font-bold text-gray-700 mb-10">Why Sponsor Us?</h3>
-              <div className="grid md:grid-cols-3 gap-10 text-left">
-                <div className="flex flex-col items-center text-center">
-                  <div className="p-3 bg-purple-100 rounded-full mb-4">
-                    <Users className="text-purple-600" size={24} />
-                  </div>
-                  <h4 className="text-lg font-bold mb-2">Access to Top Talent</h4>
-                  <p className="text-gray-600">Connect with skilled students for internships and full-time positions</p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <div className="p-3 bg-blue-100 rounded-full mb-4">
-                    <Eye className="text-blue-600" size={24} />
-                  </div>
-                  <h4 className="text-lg font-bold mb-2">Brand Visibility</h4>
-                  <p className="text-gray-600">Showcase your company to 150+ active developer students</p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <div className="p-3 bg-green-100 rounded-full mb-4">
-                    <Handshake className="text-green-600" size={24} />
-                  </div>
-                  <h4 className="text-lg font-bold mb-2">Innovation Partnership</h4>
-                  <p className="text-gray-600">Collaborate on cutting-edge projects and research initiatives</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12">
-              <Link
-                href="/form"
-                className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto w-fit"
-              >
-                <span role="img" aria-label="rocket" className="mr-2">
-                  🚀
-                </span>
-                Become a Sponsor
-                <ArrowRight className="ml-3" size={20} />
-              </Link>
-              <p className="text-gray-500 mt-4 text-sm">Join leading companies supporting innovation</p>
-            </div>
-          </section>
-        </div>
-      </div>
+    <div className="mt-12">
+    <Link
+    href="/form"
+    className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto w-fit"
+    >
+    <span role="img" aria-label="rocket" className="mr-2">
+    🚀
+    </span>
+    Become a Sponsor
+    <ArrowRight className="ml-3" size={20} />
+    </Link>
+    <p className="text-gray-500 mt-4 text-sm">Join leading companies supporting innovation</p>
+    </div>
+    </section>
+    </div>
+    </div>
     </>
   );
 };
