@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="google" content="notranslate" />
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
-      <body>{children}</body>
+      <body className={geistSans.className}>{children}</body>
     </html>
   );
 }

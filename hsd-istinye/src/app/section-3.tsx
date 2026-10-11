@@ -408,28 +408,42 @@ const Section3: React.FC = () => {
     <section id="our-events" className="text-center mb-20">
     <h2 className="text-3xl font-extrabold mb-4">Our Events</h2>
             
-    <section id="latest-event" className="mt-16 mb-20 flex flex-col items-center">
-    <h2 className="text-2xl font-bold mb-6 text-gray-800">Register for Upcoming Event</h2>
-    <div className="relative w-full max-w-[700px] aspect-[2/5] sm:aspect-[5/3] overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-white mx-auto">
-
-    <iframe
-    src="https://luma.com/embed/event/evt-dijf80pV0up9OnC/simple"
-    className="absolute top-0 left-0 w-full h-full"
-    style={{
-    border: "none",
-    display: "block",
-    transformOrigin: "top left",
-    width: "104%",
-    height: "100%"
-    }}
-    allow="fullscreen; payment"
-    scrolling="no"
-    ></iframe>
+    <section id="latest-event" className="relative isolate mt-16 mb-20 overflow-hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(120deg,#fff2a6_0%,#c9efcc_48%,#b9ddff_100%)] px-5 py-12 text-left font-[var(--font-geist-sans)] shadow-[0_30px_90px_-35px_rgba(15,23,42,0.3)] sm:px-10 sm:py-16">
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_8%_12%,_rgba(255,255,255,0.55),_transparent_36%),radial-gradient(ellipse_at_90%_88%,_rgba(255,255,255,0.4),_transparent_40%)]" />
+    <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 -z-10 h-72 w-72 rounded-full border border-white/50 sm:h-96 sm:w-96" />
+    <div className="mx-auto max-w-5xl">
+    <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/55 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700 shadow-sm">
+    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Career workshop
+    </div>
+    <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">CV Hazırlama Eğitimi</h2>
+    <p className="mt-3 max-w-xl text-sm leading-6 text-slate-700 sm:text-base">CV’ni öne çıkaracak ipuçlarını keşfet, kariyerine güçlü bir başlangıç yap.</p>
+    </div>
+    <div className="hidden shrink-0 rounded-2xl border border-white/80 bg-white/45 px-4 py-3 text-sm text-slate-700 shadow-sm sm:block">
+    <span className="block text-xs uppercase tracking-wider text-slate-500">Hosted by</span>
+    <span className="mt-1 block font-semibold text-slate-900">HSD İstinye</span>
+    </div>
+    </div>
+    <div className="grid overflow-hidden rounded-2xl border border-white/80 bg-white/55 shadow-xl shadow-slate-900/10 backdrop-blur-sm md:grid-cols-2">
+    <div className="relative h-[180px] overflow-hidden bg-gradient-to-br from-cyan-100 to-sky-200 md:h-[210px]">
+    <img src="/images/event1.jfif" alt="CV Hazırlama Eğitimi ve Huawei konuşmacısı" className="absolute inset-x-0 top-0 h-auto w-full" />
+    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/65 to-transparent px-5 pb-3 pt-8 text-xs font-semibold tracking-wide text-white">HUAWEI · CAREER WORKSHOP</div>
+    </div>
+    <div className="flex flex-col justify-center p-5 sm:p-7">
+    <div className="mb-3 inline-flex w-fit rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-800">Geçmiş etkinlik</div>
+    <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">CV Hazırlama Eğitimi</h3>
+    <p className="mt-2 text-sm leading-6 text-slate-600">HSD İstinye tarafından, Huawei DevRel Manager Kübra Bilgiç ile gerçekleştirildi.</p>
+    <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
+    <div className="rounded-xl border border-white/80 bg-white/65 p-3"><span className="block text-xs text-slate-500">Tarih</span><strong className="mt-1 block text-slate-800">14 Nisan · 20.00</strong></div>
+    <div className="rounded-xl border border-white/80 bg-white/65 p-3"><span className="block text-xs text-slate-500">Konum</span><strong className="mt-1 block text-slate-800">Google Meet</strong></div>
+    </div>
+    <a href="https://luma.com/v8aumur5?lm_source=embed" target="_blank" rel="noreferrer" className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">Etkinlik sayfasını görüntüle <ArrowRight size={16} /></a>
+    </div>
+    </div>
+    <p className="mt-4 text-center text-xs text-slate-700">Kayıt ve etkinlik bilgileri Luma üzerinden sunulur.</p>
     </div>
     </section>
-    <p className="max-w-2xl mx-auto text-lg text-gray-600">
-    Join us!
-    </p>
 
     <div className="max-w-4xl mx-auto">
     <div className="mt-12 bg-white rounded-xl shadow-lg p-4 text-left">
@@ -490,13 +504,13 @@ const Section3: React.FC = () => {
     <Slider {...sliderSettings} className="event-slider">
     {eventCards.map((card) => (
     <div key={card.key} className="px-3 h-full">
-    <div className="rounded-xl shadow-lg overflow-hidden flex flex-col h-full">
-    <div className={`${card.headerClasses} p-8 text-white flex flex-col items-center gap-4`}>
-    <div className="p-3 rounded-lg bg-white/10">{card.icon}</div>
-    <h3 className="text-xl font-bold">{card.title}</h3>
+    <div className="rounded-2xl border border-white/80 bg-[linear-gradient(120deg,#fff2a6_0%,#c9efcc_48%,#b9ddff_100%)] shadow-lg shadow-slate-900/10 overflow-hidden flex flex-col h-full">
+    <div className="p-8 text-slate-900 flex flex-col items-center gap-4">
+    <div className="p-3 rounded-xl border border-white/80 bg-white/55 text-slate-800 shadow-sm">{card.icon}</div>
+    <h3 className="text-xl font-extrabold tracking-tight text-slate-900">{card.title}</h3>
     </div>
 
-    <div className="bg-white p-6 flex flex-col flex-1">
+    <div className="bg-white/65 p-6 flex flex-col flex-1">
     <div className="flex-1">
     <p className="text-gray-600 mb-6">{card.description}</p>
     </div>
@@ -506,7 +520,7 @@ const Section3: React.FC = () => {
     <div className="text-xs text-gray-500 mt-1">{card.meta}</div>
     </div>
 
-    <Link href={card.href} className={`text-sm ${card.buttonClasses} text-white px-3 py-2 rounded-full`}>
+    <Link href={card.href} className="text-sm bg-white/80 hover:bg-white text-slate-800 border border-white px-3 py-2 rounded-full font-semibold">
     View Details →
     </Link>
     </div>
