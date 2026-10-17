@@ -5,3 +5,29 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Hero etkinlik mozaiği */
+@keyframes mosaic-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+@keyframes mosaic-down {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+
+.mosaic-col {
+  animation: mosaic-up 50s linear infinite;
+  will-change: transform;
+}
+
+.mosaic-col-reverse {
+  animation-name: mosaic-down;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mosaic-col {
+    animation: none;
+  }
+}

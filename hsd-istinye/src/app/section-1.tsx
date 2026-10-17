@@ -1,5 +1,6 @@
 "use client"
 import React, { useCallback, useState } from 'react';
+import EventMosaic from './EventMosaic';
 
 const HuaweiStudentDevelopers = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -122,34 +123,12 @@ const HuaweiStudentDevelopers = () => {
           </div>
         </div>
 
-        {/* Hero (VIDEO BACKGROUND) */}
+        {/* Hero (ETKİNLİK MOZAİĞİ) */}
         <section className="relative overflow-hidden h-screen">
-          {/* Video container - Kesin çözüm */}
-          <div className="absolute inset-0 w-full h-full">
-            <video
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center center'
-              }}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              controls={false}
-              disablePictureInPicture
-              aria-hidden="true"
-            >
-              <source src="/videos/hero.mp4" type="video/mp4" />
-              {/* Tarayıcı video desteklemezse mor arkaplan fallback */}
-            </video>
-          </div>
+          <EventMosaic />
 
           {/* Mor overlay (okunabilirlik için) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-700/40 to-purple-700/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/60 to-purple-700/30" />
 
           {/* Content layer */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center px-8 text-center text-white">
